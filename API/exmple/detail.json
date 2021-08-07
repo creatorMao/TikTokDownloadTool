@@ -1,0 +1,251 @@
+{
+    "item_list": [
+        {
+            "statistics": {
+                "aweme_id": "6992910715761872143",
+                "comment_count": 10,
+                "digg_count": 120,
+                "play_count": 0,
+                "share_count": 2
+            },
+            "risk_infos": {
+                "warn": false,
+                "type": 0,
+                "content": ""
+            },
+            "label_top_text": null,
+            "long_video": null,
+            "music": {
+                "id": 6905792247032237000,
+                "title": "王小雅的飞鸟和弹原声",
+                "author": "王小雅.,🎀",
+                "cover_large": {
+                    "uri": "1080x1080/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c",
+                    "url_list": [
+                        "https://p6.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_1080x1080.jpeg?from=116350172",
+                        "https://p26.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_1080x1080.jpeg?from=116350172",
+                        "https://p3.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_1080x1080.jpeg?from=116350172"
+                    ]
+                },
+                "cover_thumb": {
+                    "url_list": [
+                        "https://p26.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_168x168.jpeg?from=116350172",
+                        "https://p9.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_168x168.jpeg?from=116350172",
+                        "https://p29.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_168x168.jpeg?from=116350172"
+                    ],
+                    "uri": "168x168/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c"
+                },
+                "position": null,
+                "mid": "6905792247032236807",
+                "cover_hd": {
+                    "uri": "1080x1080/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c",
+                    "url_list": [
+                        "https://p6.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_1080x1080.jpeg?from=116350172",
+                        "https://p26.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_1080x1080.jpeg?from=116350172",
+                        "https://p3.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_1080x1080.jpeg?from=116350172"
+                    ]
+                },
+                "cover_medium": {
+                    "url_list": [
+                        "https://p9.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_720x720.jpeg?from=116350172",
+                        "https://p6.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_720x720.jpeg?from=116350172",
+                        "https://p26.douyinpic.com/img/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c~c5_720x720.jpeg?from=116350172"
+                    ],
+                    "uri": "720x720/tos-cn-avt-0015/351dbc7cf362fc784876f629b2eb8e7c"
+                },
+                "play_url": {
+                    "uri": "https://sf6-cdn-tos.douyinstatic.com/obj/ies-music/6905792064919718669.mp3",
+                    "url_list": [
+                        "https://sf6-cdn-tos.douyinstatic.com/obj/ies-music/6905792064919718669.mp3",
+                        "https://sf3-cdn-tos.douyinstatic.com/obj/ies-music/6905792064919718669.mp3"
+                    ]
+                },
+                "duration": 61,
+                "status": 1
+            },
+            "video": {
+                "origin_cover": {
+                    "uri": "tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3",
+                    "url_list": [
+                        "https://p11.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~noop.jpeg?x-expires=1628193600&x-signature=aea9q16A9HDHYocKYBJXSjs7y80%3D&from=4257465056",
+                        "https://p26.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~noop.jpeg?x-expires=1628193600&x-signature=aea9q16A9HDHYocKYBJXSjs7y80%3D&from=4257465056",
+                        "https://p3.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~noop.jpeg?x-expires=1628193600&x-signature=dTefEIaqP6Kdbr7HejoZp3uoBC0%3D&from=4257465056"
+                    ]
+                },
+                "ratio": "default",
+                "has_watermark": false,
+                "vid": "",
+                "duration": 0,
+                "play_addr": {
+                    "uri": "https://sf6-cdn-tos.douyinstatic.com/obj/ies-music/6905792064919718669.mp3",
+                    "url_list": [
+                        "https://aweme.snssdk.com/aweme/v1/playwm/?video_id=https://sf6-cdn-tos.douyinstatic.com/obj/ies-music/6905792064919718669.mp3&ratio=720p&line=0"
+                    ]
+                },
+                "cover": {
+                    "uri": "tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3",
+                    "url_list": [
+                        "https://p11.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~noop.jpeg?x-expires=1628193600&x-signature=KAhkCp10beRbyLvQgvbVERg%2FpHA%3D&from=4257465056",
+                        "https://p9.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~noop.jpeg?x-expires=1628193600&x-signature=aea9q16A9HDHYocKYBJXSjs7y80%3D&from=4257465056",
+                        "https://p6.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~noop.jpeg?x-expires=1628193600&x-signature=dTefEIaqP6Kdbr7HejoZp3uoBC0%3D&from=4257465056"
+                    ]
+                },
+                "height": 1660,
+                "width": 2214,
+                "bit_rate": null
+            },
+            "text_extra": [
+                {
+                    "start": 38,
+                    "end": 41,
+                    "type": 1,
+                    "hashtag_name": "深漂",
+                    "hashtag_id": 1587945034944525
+                },
+                {
+                    "start": 41,
+                    "end": 45,
+                    "type": 1,
+                    "hashtag_name": "酒店人",
+                    "hashtag_id": 1592939266697239
+                }
+            ],
+            "comment_list": null,
+            "author": {
+                "unique_id": "AA05160516",
+                "platform_sync_info": null,
+                "geofencing": null,
+                "type_label": null,
+                "avatar_larger": {
+                    "uri": "1080x1080/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe",
+                    "url_list": [
+                        "https://p3.douyinpic.com/img/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe~c5_1080x1080.jpeg?from=116350172",
+                        "https://p26.douyinpic.com/img/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe~c5_1080x1080.jpeg?from=116350172",
+                        "https://p11.douyinpic.com/img/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe~c5_1080x1080.jpeg?from=116350172"
+                    ]
+                },
+                "avatar_thumb": {
+                    "uri": "100x100/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe",
+                    "url_list": [
+                        "https://p26.douyinpic.com/img/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe~c5_100x100.jpeg?from=116350172",
+                        "https://p11.douyinpic.com/img/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe~c5_100x100.jpeg?from=116350172",
+                        "https://p3.douyinpic.com/img/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe~c5_100x100.jpeg?from=116350172"
+                    ]
+                },
+                "avatar_medium": {
+                    "uri": "720x720/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe",
+                    "url_list": [
+                        "https://p3.douyinpic.com/img/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe~c5_720x720.jpeg?from=116350172",
+                        "https://p26.douyinpic.com/img/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe~c5_720x720.jpeg?from=116350172",
+                        "https://p29.douyinpic.com/img/tos-cn-i-0813/83ed76996fad401bad3d277e3700efbe~c5_720x720.jpeg?from=116350172"
+                    ]
+                },
+                "followers_detail": null,
+                "uid": "4015039394357075",
+                "short_id": "2800944456",
+                "nickname": "乘客东东",
+                "signature": "人的一生会遇到很多风雨 别气馁 往前走。",
+                "policy_version": null
+            },
+            "forward_id": "0",
+            "promotions": null,
+            "images": [
+                {
+                    "uri": "tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3",
+                    "url_list": [
+                        "https://p11.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~noop.webp?x-expires=1628193600&x-signature=7zF9WJ%2BJU8JgRD5zlZ8DJuq7Eb8%3D&from=4257465056",
+                        "https://p29.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~noop.webp?x-expires=1628193600&x-signature=7zF9WJ%2BJU8JgRD5zlZ8DJuq7Eb8%3D&from=4257465056",
+                        "https://p3.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~noop.webp?x-expires=1628193600&x-signature=7zF9WJ%2BJU8JgRD5zlZ8DJuq7Eb8%3D&from=4257465056",
+                        "https://p11.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~noop.jpeg?x-expires=1628193600&x-signature=aea9q16A9HDHYocKYBJXSjs7y80%3D&from=4257465056"
+                    ],
+                    "download_url_list": [
+                        "https://p3.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:2214:1660.image?x-expires=1628193600&x-signature=EXEDR%2BY2iJ%2ByJZip4NKhpNTMq%2B4%3D&sig=1VcYguUNA3hix5NKzJ-5g3p9Uxw%3D&from=4257465056",
+                        "https://p26.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:2214:1660.image?x-expires=1628193600&x-signature=EXEDR%2BY2iJ%2ByJZip4NKhpNTMq%2B4%3D&sig=1VcYguUNA3hix5NKzJ-5g3p9Uxw%3D&from=4257465056",
+                        "https://p6.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:2214:1660.image?x-expires=1628193600&x-signature=EXEDR%2BY2iJ%2ByJZip4NKhpNTMq%2B4%3D&sig=1VcYguUNA3hix5NKzJ-5g3p9Uxw%3D&from=4257465056",
+                        "https://p3.douyinpic.com/tos-cn-i-0813/37e5cfb7e94e48fb86804d1bd7d2dad3~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:2214:1660.ijpeg?x-expires=1628193600&x-signature=kx9f1oWZ5BE8bM83YF9Y5JKTXLI%3D&sig=R6wlaJnxuyt2FtmirBzi2lg46vg%3D&from=4257465056"
+                    ],
+                    "height": 1660,
+                    "width": 2214
+                },
+                {
+                    "download_url_list": [
+                        "https://p3.douyinpic.com/tos-cn-i-0813/f1f94e1f38a048839c40765127f954c0~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:1660:2214.image?x-expires=1628193600&x-signature=Zaa23Vqr5EqPfJAaFbTeXreAvJM%3D&sig=sWtQ771F3ef7EeV4V9bN0VgPRIw%3D&from=4257465056",
+                        "https://p9.douyinpic.com/tos-cn-i-0813/f1f94e1f38a048839c40765127f954c0~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:1660:2214.image?x-expires=1628193600&x-signature=Zaa23Vqr5EqPfJAaFbTeXreAvJM%3D&sig=sWtQ771F3ef7EeV4V9bN0VgPRIw%3D&from=4257465056",
+                        "https://p11.douyinpic.com/tos-cn-i-0813/f1f94e1f38a048839c40765127f954c0~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:1660:2214.image?x-expires=1628193600&x-signature=Zaa23Vqr5EqPfJAaFbTeXreAvJM%3D&sig=sWtQ771F3ef7EeV4V9bN0VgPRIw%3D&from=4257465056",
+                        "https://p3.douyinpic.com/tos-cn-i-0813/f1f94e1f38a048839c40765127f954c0~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:1660:2214.ijpeg?x-expires=1628193600&x-signature=zjSUepaDGpWL39gzR5BMBlaq%2BM8%3D&sig=PEscd9iwKgtDDxQmiuxXtU8Z42Q%3D&from=4257465056"
+                    ],
+                    "height": 2214,
+                    "width": 1660,
+                    "uri": "tos-cn-i-0813/f1f94e1f38a048839c40765127f954c0",
+                    "url_list": [
+                        "https://p6.douyinpic.com/tos-cn-i-0813/f1f94e1f38a048839c40765127f954c0~noop.webp?x-expires=1628193600&x-signature=xomGt3YatGLc5mvncKI0voLc3cw%3D&from=4257465056",
+                        "https://p3.douyinpic.com/tos-cn-i-0813/f1f94e1f38a048839c40765127f954c0~noop.webp?x-expires=1628193600&x-signature=xomGt3YatGLc5mvncKI0voLc3cw%3D&from=4257465056",
+                        "https://p26.douyinpic.com/tos-cn-i-0813/f1f94e1f38a048839c40765127f954c0~noop.webp?x-expires=1628193600&x-signature=k%2FyG1Gw9JQeP%2F%2FK0pNSInZ9X%2Bjg%3D&from=4257465056",
+                        "https://p6.douyinpic.com/tos-cn-i-0813/f1f94e1f38a048839c40765127f954c0~noop.jpeg?x-expires=1628193600&x-signature=5%2FxKSs8JfgFMeFDgXyGVr2wicmQ%3D&from=4257465056"
+                    ]
+                },
+                {
+                    "uri": "tos-cn-i-0813/e976795abb4b4ed58d0ab7d0302dad5a",
+                    "url_list": [
+                        "https://p9.douyinpic.com/tos-cn-i-0813/e976795abb4b4ed58d0ab7d0302dad5a~noop.webp?x-expires=1628193600&x-signature=RRUB8CxR%2BJ9v%2BhP6hDufyJGfFxI%3D&from=4257465056",
+                        "https://p29.douyinpic.com/tos-cn-i-0813/e976795abb4b4ed58d0ab7d0302dad5a~noop.webp?x-expires=1628193600&x-signature=RRUB8CxR%2BJ9v%2BhP6hDufyJGfFxI%3D&from=4257465056",
+                        "https://p11.douyinpic.com/tos-cn-i-0813/e976795abb4b4ed58d0ab7d0302dad5a~noop.webp?x-expires=1628193600&x-signature=RRUB8CxR%2BJ9v%2BhP6hDufyJGfFxI%3D&from=4257465056",
+                        "https://p9.douyinpic.com/tos-cn-i-0813/e976795abb4b4ed58d0ab7d0302dad5a~noop.jpeg?x-expires=1628193600&x-signature=QmWW1FsO61BLkF5fKmXoLEHxb1o%3D&from=4257465056"
+                    ],
+                    "download_url_list": [
+                        "https://p3.douyinpic.com/tos-cn-i-0813/e976795abb4b4ed58d0ab7d0302dad5a~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:1660:2214.image?x-expires=1628193600&x-signature=wKgkuaAOEjmOt%2FonDH4Mg8ZayV0%3D&sig=jNELWMFPrz65Pi_udDlafSW4zHg%3D&from=4257465056",
+                        "https://p9.douyinpic.com/tos-cn-i-0813/e976795abb4b4ed58d0ab7d0302dad5a~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:1660:2214.image?x-expires=1628193600&x-signature=R2zRi8A4f3SDXcW1pj3lTKBj6Lk%3D&sig=jNELWMFPrz65Pi_udDlafSW4zHg%3D&from=4257465056",
+                        "https://p6.douyinpic.com/tos-cn-i-0813/e976795abb4b4ed58d0ab7d0302dad5a~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:1660:2214.image?x-expires=1628193600&x-signature=wKgkuaAOEjmOt%2FonDH4Mg8ZayV0%3D&sig=jNELWMFPrz65Pi_udDlafSW4zHg%3D&from=4257465056",
+                        "https://p3.douyinpic.com/tos-cn-i-0813/e976795abb4b4ed58d0ab7d0302dad5a~tplv-dy-water-v2:5oqW6Z-z5Y-377yaQUEwNTE2MDUxNg==:1660:2214.ijpeg?x-expires=1628193600&x-signature=vqvGD2zkYwJlocdUhJIbkXP%2BA%2FA%3D&sig=Dpcn9VCsIuqnMszIMQIuaN8OHkA%3D&from=4257465056"
+                    ],
+                    "height": 2214,
+                    "width": 1660
+                }
+            ],
+            "aweme_id": "6992910715761872143",
+            "desc": "如果你不够拼，深圳只是深圳，只有城中村和猪脚饭。你够拼深圳就是美好生活的天堂#深漂#酒店人 ",
+            "is_live_replay": false,
+            "share_info": {
+                "share_weibo_desc": "#在抖音，记录美好生活#如果你不够拼，深圳只是深圳，只有城中村和猪脚饭。你够拼深圳就是美好生活的天堂#深漂#酒店人 ",
+                "share_desc": "在抖音，记录美好生活",
+                "share_title": "如果你不够拼，深圳只是深圳，只有城中村和猪脚饭。你够拼深圳就是美好生活的天堂#深漂#酒店人 "
+            },
+            "video_labels": null,
+            "duration": 0,
+            "aweme_type": 2,
+            "image_infos": [
+                {}
+            ],
+            "author_user_id": 4015039394357075,
+            "create_time": 1628163904,
+            "cha_list": [
+                {
+                    "cid": "1592939266697239",
+                    "connect_music": null,
+                    "type": 0,
+                    "view_count": 0,
+                    "hash_tag_profile": "",
+                    "cha_name": "酒店人",
+                    "desc": "",
+                    "user_count": 0,
+                    "is_commerce": false
+                }
+            ],
+            "geofencing": null,
+            "is_preview": 0,
+            "group_id": 6992910715761872000,
+            "anchor_info": {
+                "id": "6601141271144695815",
+                "name": "",
+                "type": 2
+            },
+            "share_url": "https://www.iesdouyin.com/share/video/6992910715761872143/?region=&mid=6905792247032236807&u_code=48&titleType=title&did=MS4wLjABAAAANwkJuWIRFOzg5uCpDRpMj4OX-QryoDgn-yYlXQnRwQQ&iid=MS4wLjABAAAANwkJuWIRFOzg5uCpDRpMj4OX-QryoDgn-yYlXQnRwQQ&with_sec_did=1&schema_type=37",
+            "video_text": null
+        }
+    ],
+    "extra": {
+        "logid": "20210805221253010211202145382316F0",
+        "now": 1628172773000
+    },
+    "status_code": 0
+}
