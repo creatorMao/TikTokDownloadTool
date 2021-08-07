@@ -23,49 +23,28 @@ class TikTok():
         self.end = False
 
         #绘制布局
-        print("#" * 110)
+        print("#" * 130)
         print( 
     """
-                                                TikTokDownload V1.2.3
-    使用说明：
-            1、运行软件前先打开目录下 conf.ini 文件按照要求进行配置
-            2、批量下载可直接修改配置文件，单一视频下载请直接打开粘贴视频链接即可
-            3、如有您有任何bug或者意见反馈请在 https://github.com/Johnserf-Seed/TikTokDownload/issues 发起
-            4、后续可能会更新GUI界面，操作更简单
+                                                TikTokDownloadTool
+    软件说明：
+            1. 本项目fork自Johnserf-Seed的TikTokDownload。目的是为了增加个性化的功能，若想体验更多完善的功能请支持原作者的项目。
+               https://github.com/Johnserf-Seed/TikTokDownload
+            2. 如有您有任何bug或者意见反馈请在 https://github.com/creatorMao/TikTokDownloadTool/issues 发起
 
-    注意：  单个视频链接与用户主页链接要分清，软件闪退可以通过终端运行查看报错信息（一般是链接弄错的问题）
+    功能清单：
+            1. 全量下载：下载指定博主主页下所有的无水印视频和图片
+            2. 增量下载：下载之前下载过全量的博主新更新的内容
     """
         )
-        print("#" * 110)
+        print("#" * 130)
         print('\r')
 
         #检测配置文件
         if os.path.isfile("conf.ini") == True:
             pass
         else:
-            print('----没有检测到配置文件，生成中----\r')
-            try:
-                self.cf = configparser.ConfigParser()
-                # 往配置文件写入内容
-                self.cf.add_section("url")
-                self.cf.set("url", "uid", "https://v.douyin.com/JcjJ5Tq/")
-                self.cf.add_section("music")
-                self.cf.set("music", "musicarg", "yes")
-                self.cf.add_section("count")
-                self.cf.set("count", "count", "35")
-                self.cf.add_section("save")
-                self.cf.set("save", "url", ".\\Download\\")
-                self.cf.add_section("mode")
-                self.cf.set("mode", "mode", "post")
-                with open("conf.ini","a+") as f:
-                    self.cf.write(f)
-                print('----生成成功----\r')
-            except:
-                input('----生成失败,正在为您下载配置文件----\r')
-                r =requests.get('https://gitee.com/johnserfseed/TikTokDownload/raw/main/conf.ini')
-                with open("conf.ini", "a+") as conf:
-                    conf.write(r.content)
-                sys.exit()
+            input('----无配置文件----\r')
 
         #实例化读取配置文件
         self.cf = configparser.ConfigParser()
@@ -83,7 +62,7 @@ class TikTok():
         self.musicarg = self.cf.get("music","musicarg")
 
         #读取用户主页地址
-        self.userInput = input('只更新请按回车，全量下载一个博主视频请按1')
+        self.userInput = input('请选择一种功能(输入功能的序号):')
 
         #读取下载模式
         self.mode = self.cf.get("mode","mode")
@@ -91,20 +70,32 @@ class TikTok():
         #保存用户名
         self.nickname = ""
 
-        print('----读取配置完成----\r')
+        self.uidPrefix=self.cf.get("api","uidPrefix")
+
+        #print('----读取配置完成----\r')
         
-        if self.userInput == '': #更新模式
+        if self.userInput == '1':
+            self.uid = input('请输入完整的个人主页地址(例如https://v.douyin.com/JcjJ5Tq/) :')            
+            
+            hisOnlyUpdateUid=self.cf.get("url","onlyUpdateUid")
+            self.cf.remove_section("url")
+            self.cf.add_section("url")
+            self.cf.set("url","onlyUpdateUid",(hisOnlyUpdateUid+ ("" if hisOnlyUpdateUid=="" else ",")+self.uid.replace(self.uidPrefix,'')))
+            self.cf.write(open('conf.ini', "w"))
+
+            print('默认已将该地址，放入到增量下载列表中。等此次全量下载完成后，下次你可选择功能2(增量下载),来仅下载新更新的内容。')
+            time.sleep(1)
+        
+            self.end = False
+            self.judge_link((self.uidPrefix+self.uid),False)
+        else: 
             self.onlyUpdateUid = self.cf.get("url","onlyUpdateUid")
             self.onlyUpdateUidList=self.onlyUpdateUid.split(',')
 
             for idx in range(len(self.onlyUpdateUidList)):
                 self.end = False
                 time.sleep(0.1)
-                self.judge_link((self.cf.get("url","uidPrefix")+self.onlyUpdateUidList[idx]),True)
-        else:  #全量下载模式
-            self.uid = self.cf.get("url","uid")
-            self.end = False
-            self.judge_link((self.cf.get("url","uidPrefix")+self.uid),False)
+                self.judge_link((self.uidPrefix+self.onlyUpdateUidList[idx]),True)
 
     #匹配粘贴的url地址
     def Find(self,string): 
