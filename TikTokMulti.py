@@ -80,9 +80,8 @@ class TikTok():
             self.cf.set("url", "incrementalUpdateUserList", (hisIncrementalUpdateUserList + (
                 "" if hisIncrementalUpdateUserList == "" else ",")+self.uid.replace(self.userHomePagePrefix, '')))
             self.cf.write(open('conf.ini', "w"))
-
             print('默认已将该地址，放入到增量下载列表中。等此次全量下载完成后，下次你可选择功能2(增量下载),来仅下载新更新的内容。')
-            time.sleep(1)
+            
         else:
             self.incrementalUpdateUserList = self.cf.get(
                 "url", "incrementalUpdateUserList").split(',')
