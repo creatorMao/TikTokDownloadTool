@@ -69,10 +69,10 @@ class TikTok():
 
         if self.userInput == '1':
             self.uid = input(
-                '请输入完整的个人主页地址(例如'+self.userHomePageExmple+') :')
+                '请输入完整的个人主页地址(例如'+self.userHomePageExmple+'):')
 
             if self.uid=="":
-                print("你在干什么...不能为空的哦！")
+                print("你在干什么,地址不能为空的哦！")
                 return
 
             self.end = False
@@ -90,8 +90,7 @@ class TikTok():
             
             print('')
             print('全量下载已完成！已将该博主，放入到增量下载列表中。下次你可选择功能2(增量下载),来下载该博主新更新的内容。')            
-        
-        if self.userInput == '2':
+        elif self.userInput == '2':
             updateLength=len(self.incrementalUpdateUserList)
             
             if updateLength==0:
@@ -107,7 +106,7 @@ class TikTok():
             print('增量下载已完成！')
         else:
             print("你在干什么，请输入正确的功能序号！")
-            return;
+            return
 
     #匹配粘贴的url地址
     def Find(self, string):
