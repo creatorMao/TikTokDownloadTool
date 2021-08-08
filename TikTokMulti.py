@@ -64,31 +64,50 @@ class TikTok():
         self.userHomePageExmple = self.cf.get("api", "userHomePageExmple")
 
         #增量更新用户列表
-        self.incrementalUpdateUserList = []
+        hisIncrementalUpdateUserList=self.cf.get("url", "incrementalUpdateUserList")
+        self.incrementalUpdateUserList = [] if hisIncrementalUpdateUserList=="" else hisIncrementalUpdateUserList.split(',')
 
         if self.userInput == '1':
             self.uid = input(
                 '请输入完整的个人主页地址(例如'+self.userHomePageExmple+') :')
 
-            self.end = False
-            self.judge_link((self.userHomePagePrefix+self.uid), False)
+            if self.uid=="":
+                print("你在干什么...不能为空的哦！")
+                return
 
-            hisIncrementalUpdateUserList = self.cf.get(
-                "url", "incrementalUpdateUserList")
+            self.end = False
+            linkFlag=self.judge_link((self.userHomePagePrefix+self.uid), False)
+
+            if linkFlag==False:
+                print("输入的地址不正确")
+                return
+
             self.cf.remove_section("url")
             self.cf.add_section("url")
             self.cf.set("url", "incrementalUpdateUserList", (hisIncrementalUpdateUserList + (
                 "" if hisIncrementalUpdateUserList == "" else ",")+self.uid.replace(self.userHomePagePrefix, '')))
             self.cf.write(open('conf.ini', "w"))
+            
+            print('')
             print('全量下载已完成！已将该博主，放入到增量下载列表中。下次你可选择功能2(增量下载),来下载该博主新更新的内容。')            
-        else:
-            self.incrementalUpdateUserList = self.cf.get(
-                "url", "incrementalUpdateUserList").split(',')
-            for idx in range(len(self.incrementalUpdateUserList)):
+        
+        if self.userInput == '2':
+            updateLength=len(self.incrementalUpdateUserList)
+            
+            if updateLength==0:
+                print("增量更新列表为空，请先选择功能1，进行一次全量更新以后，再选择增量更新！")
+                return
+
+            for idx in range(updateLength):
                 self.end = False
                 self.judge_link(
                     (self.userHomePagePrefix+self.incrementalUpdateUserList[idx]), True)
+            
+            print('')
             print('增量下载已完成！')
+        else:
+            print("你在干什么，请输入正确的功能序号！")
+            return;
 
     #匹配粘贴的url地址
     def Find(self, string):
@@ -105,19 +124,14 @@ class TikTok():
 
         #判断输入的是不是用户主页
         if r.url[:28] == multi_url:
-            print('----为您下载多个视频----\r')
-            #获取用户sec_uid
-            #key = re.findall('&sec_uid=(.*?)&',str(r.url))[0]
+            print('')
+            print('----正在为您下载主页上的视频----\r')
             key = re.findall('/user/(.*?)\?', str(r.url))[0]
             if not key:
                 key = r.url[28:83]
-            print('----'+'用户的sec_id='+key+'----\r')
+            #print('----'+'用户的sec_id='+key+'----\r')
         else:
-            print('----为您下载单个视频----\r')
-            print(r.url)
-            urlarg, musicarg = TikTokDownload.main()
-            TikTokDownload.video_download(urlarg, musicarg)
-            return
+            return False
 
         #第一次访问页码
         max_cursor = 0
