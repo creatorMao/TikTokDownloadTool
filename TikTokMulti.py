@@ -80,9 +80,7 @@ class TikTok():
             self.cf.set("url", "incrementalUpdateUserList", (hisIncrementalUpdateUserList + (
                 "" if hisIncrementalUpdateUserList == "" else ",")+self.uid.replace(self.userHomePagePrefix, '')))
             self.cf.write(open('conf.ini', "w"))
-            print('全量下载已完成！')
-            print('默认已将该博主，放入到增量下载列表中。下次你可选择功能2(增量下载),来下载该博主新更新的内容。')
-            
+            print('全量下载已完成！已将该博主，放入到增量下载列表中。下次你可选择功能2(增量下载),来下载该博主新更新的内容。')            
         else:
             self.incrementalUpdateUserList = self.cf.get(
                 "url", "incrementalUpdateUserList").split(',')
@@ -90,6 +88,7 @@ class TikTok():
                 self.end = False
                 self.judge_link(
                     (self.userHomePagePrefix+self.incrementalUpdateUserList[idx]), True)
+            print('增量下载已完成！')
 
     #匹配粘贴的url地址
     def Find(self, string):
@@ -174,7 +173,6 @@ class TikTok():
             self.mode, key, str(self.count), max_cursor)
         index = 0
         result = []
-        print(api_naxt_post_url)
         while self.end == False and index <= 4:
             #回到首页，则结束
             if max_cursor == 0:
@@ -309,8 +307,6 @@ class TikTok():
                         input('下载音频出错!\r')
             except Exception as error:
                 print("下载错误："+error)
-                #print('该页音频没有'+str(self.count)+'个,已为您跳过\r')
-                #break
 
             try:
                 v_url = self.save + self.mode + '/' + nickname[i] + '/' + re.sub(
@@ -353,13 +349,11 @@ class TikTok():
                     input('下载视频出错!\r')
             except Exception as error:
                 print(error)
-                #print('该页视频没有'+str(self.count)+'个,已为您跳过\r')
-                #break
         self.next_data(max_cursor, userId, isUpdateFlag)
 
 
 #主模块执行
 if __name__ == "__main__":
     RTK = TikTok()
-    input('[  完成  ]:已完成批量下载，输入任意键后退出:')
+    input('输入任意键后退出:')
     sys.exit()
