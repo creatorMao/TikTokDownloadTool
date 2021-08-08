@@ -80,7 +80,8 @@ class TikTok():
             self.cf.set("url", "incrementalUpdateUserList", (hisIncrementalUpdateUserList + (
                 "" if hisIncrementalUpdateUserList == "" else ",")+self.uid.replace(self.userHomePagePrefix, '')))
             self.cf.write(open('conf.ini', "w"))
-            print('默认已将该地址，放入到增量下载列表中。等此次全量下载完成后，下次你可选择功能2(增量下载),来仅下载新更新的内容。')
+            print('全量下载已完成！')
+            print('默认已将该博主，放入到增量下载列表中。下次你可选择功能2(增量下载),来下载该博主新更新的内容。')
             
         else:
             self.incrementalUpdateUserList = self.cf.get(
@@ -125,7 +126,6 @@ class TikTok():
         #构造第一次访问链接
         api_post_url = 'https://www.iesdouyin.com/web/api/v2/aweme/%s/?sec_uid=%s&count=%s&max_cursor=%s&aid=1128&_signature=PDHVOQAAXMfFyj02QEpGaDwx1S&dytk=' % (
             self.mode, key, str(self.count), max_cursor)
-        print(api_post_url)
         self.get_data(api_post_url, max_cursor, userId, isUpdateFlag)
         return api_post_url, max_cursor, key
 
@@ -229,9 +229,6 @@ class TikTok():
                     self.photos_download(title, id, nick, isUpdateFlag)
 
             except Exception as error:
-                #print(i2)
-                #print(result)
-                #print(result[i2])
                 print(error)
                 pass
         self.videos_download(author_list, video_list, aweme_id,
