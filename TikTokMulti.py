@@ -153,7 +153,7 @@ class TikTok():
             time.sleep(0.3)
             response = requests.get(url=api_post_url, headers=self.headers)
             html = json.loads(response.content.decode())
-            if self.end == False and len(html['aweme_list']) > 0:
+            if self.end == False and 'aweme_list' in html.keys() and len(html['aweme_list']) > 0:
                 #下一页值
                 self.nickname = html['aweme_list'][0]['author']['nickname']
                 print('[  用户  ]:'+str(self.nickname)+'\r')
