@@ -245,6 +245,12 @@ class TikTok():
         self.videos_download(author_list, video_list, aweme_id,
                              nickname, max_cursor, userId, isUpdateFlag)
         return self, author_list, video_list, aweme_id, nickname, max_cursor
+    
+    # 处理文件名称，如果太长则截取，只取50个字
+    def dealFileName(self,name):
+        if len(name)>=50:
+            return name[0:50]
+        return name
 
     #图片下载
     def photos_download(self, author_name, id, nickname, isUpdateFlag):
@@ -322,23 +328,20 @@ class TikTok():
                 print("下载错误："+error)
 
             try:
-                v_url = self.save + self.mode + '/' + nickname[i] + '/' + re.sub(
-                    r'[\\/:*?"<>|\r\n]+', "_", author_list[i]) + str(aweme_id[i]) + '.mp4'
-                v_url_OLD = self.save + self.mode + '/' + \
-                    nickname[i] + '/' + \
-                    re.sub(r'[\\/:*?"<>|\r\n]+', "_", author_list[i]) + '.mp4'
+                fileName=re.sub(r'[\\/:*?"<>|\r\n]+', "_", author_list[i])
+                shortFileName=self.dealFileName(fileName)
+                v_url = self.save + self.mode + '/' + nickname[i] + '/' + fileName+str(aweme_id[i]) + '.mp4'
+                v_url_OLD = self.save + self.mode + '/' + nickname[i] + '/' + fileName + '.mp4'
+                v_url_short = self.save + self.mode + '/' + nickname[i] + '/' + shortFileName+str(aweme_id[i]) + '.mp4'
+                
                 print(v_url)
-                if os.path.isfile(v_url):  # 判断视频是否存在，避免重复下载
-                    print("文件已下载，已为你跳过")
-                    if isUpdateFlag == True:
-                        return
-                    continue
-                if os.path.isfile(v_url_OLD):  # 判断视频是否存在，避免重复下载
-                    print("文件已下载，已为你跳过")
-                    if isUpdateFlag == True:
-                        return
-                    continue
 
+                if os.path.isfile(v_url) or os.path.isfile(v_url_OLD) or os.path.isfile(v_url_short):  # 判断视频是否存在，避免重复下载
+                    print("文件已下载，已为你跳过")
+                    if isUpdateFlag == True:
+                        return
+                    continue
+                
                 video = requests.get(video_list[i])  # 保存视频
                 start = time.time()  # 下载开始时间
                 size = 0  # 初始化已下载大小
@@ -348,7 +351,7 @@ class TikTok():
                     if video.status_code == 200:  # 判断是否响应成功
                         print('[  视频  ]:'+author_list[i]+'[文件 大小]:{size:.2f} MB'.format(
                             size=content_size / chunk_size / 1024))  # 开始下载，显示下载文件大小
-                        with open(v_url, 'wb') as file:  # 显示进度条
+                        with open(v_url_short, 'wb') as file:  # 显示进度条
                             for data in video.iter_content(chunk_size=chunk_size):
                                 file.write(data)
                                 size += len(data)
