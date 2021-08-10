@@ -99,7 +99,10 @@ class TikTok():
                 print("增量更新列表为空，请先选择功能1，进行一次全量更新以后，再选择增量更新！")
                 return
 
+            print('本次增量更新总共有'+str(updateLength)+"个用户")
             for idx in range(updateLength):
+                print("")
+                print("正在更新第"+str(idx+1)+"个用户")
                 self.end = False
                 self.judge_link(
                     (self.userHomePagePrefix+self.incrementalUpdateUserList[idx]), True)
@@ -125,7 +128,6 @@ class TikTok():
 
         #判断输入的是不是用户主页
         if r.url[:28] == multi_url:
-            print('')
             print('----正在为您下载主页上的视频----\r')
             key = re.findall('/user/(.*?)\?', str(r.url))[0]
             if not key:
