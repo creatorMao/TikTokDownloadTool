@@ -236,6 +236,7 @@ class TikTok():
                 nickname.append(nick)
 
                 ##图片下载
+                print(str(result[i2]['aweme_type']))
                 if str(result[i2]['aweme_type']) == "2":
                     self.photos_download(title, id, nick, isUpdateFlag)
 
@@ -268,20 +269,27 @@ class TikTok():
             images = js['item_list'][0]['images']
             for i in range(len(images)):
                 imagesUrl = str(images[i]['url_list'][0])
-                photoUrl = self.save + self.mode + '/' + nickname + '/' + \
-                    re.sub(r'[\\/:*?"<>|\r\n]+', "_", author_name) + \
-                    str(id)+str(i) + '.jpeg'
-                if os.path.isfile(photoUrl):
+                
+                name=re.sub(r'[\\/:*?"<>|\r\n]+', "_", author_name)
+                photoUrl = self.save + self.mode + '/' + nickname + '/' + name+ str(id)+str(i) + '.jpeg'
+                photoShortUrl=self.save + self.mode + '/' + nickname + '/' + self.dealFileName(name)+ str(id)+str(i) + '.jpeg'
+
+                if os.path.isfile(photoUrl) or os.path.isfile(photoShortUrl):
                     print("文件已下载，已为你跳过")
                     if isUpdateFlag == True:
                         return
                     continue
+                
+                print('开始下载图片'+photoShortUrl)
+
                 photo = requests.get(imagesUrl)  # 保存图片
                 if photo.status_code == 200:
-                    with open(photoUrl, 'wb') as file:
+                    with open(photoShortUrl, 'wb') as file:
                         file.write(photo.content)
+                        print('图片下载成功')
+
         except Exception as error:
-            print("下载错误："+error)
+            print("图片下载错误："+error)
 
     def videos_download(self, author_list, video_list, aweme_id, nickname, max_cursor, userId, isUpdateFlag):
         for i in range(len(video_list)):
@@ -334,7 +342,7 @@ class TikTok():
                 v_url_OLD = self.save + self.mode + '/' + nickname[i] + '/' + fileName + '.mp4'
                 v_url_short = self.save + self.mode + '/' + nickname[i] + '/' + shortFileName+str(aweme_id[i]) + '.mp4'
                 
-                print(v_url)
+                print(v_url_short)
 
                 if os.path.isfile(v_url) or os.path.isfile(v_url_OLD) or os.path.isfile(v_url_short):  # 判断视频是否存在，避免重复下载
                     print("文件已下载，已为你跳过")
