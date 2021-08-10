@@ -82,11 +82,13 @@ class TikTok():
                 print("输入的地址不正确")
                 return
 
-            self.cf.remove_section("url")
-            self.cf.add_section("url")
-            self.cf.set("url", "incrementalUpdateUserList", (hisIncrementalUpdateUserList + (
-                "" if hisIncrementalUpdateUserList == "" else ",")+self.uid.replace(self.userHomePagePrefix, '')))
-            self.cf.write(open('conf.ini', "w"))
+            currentUser=self.uid.replace(self.userHomePagePrefix, '')
+            if currentUser not in hisIncrementalUpdateUserList:
+                self.cf.remove_section("url")
+                self.cf.add_section("url")
+                self.cf.set("url", "incrementalUpdateUserList", (hisIncrementalUpdateUserList + (
+                "" if hisIncrementalUpdateUserList == "" else ",")+currentUser))
+                self.cf.write(open('conf.ini', "w"))
             
             print('')
             print('全量下载已完成！已将该博主，放入到增量下载列表中。下次你可选择功能2(增量下载),来下载该博主新更新的内容。')            
@@ -236,7 +238,6 @@ class TikTok():
                 nickname.append(nick)
 
                 ##图片下载
-                print(str(result[i2]['aweme_type']))
                 if str(result[i2]['aweme_type']) == "2":
                     self.photos_download(title, id, nick, isUpdateFlag)
 
