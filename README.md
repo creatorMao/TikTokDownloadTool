@@ -38,9 +38,14 @@ python TikTokMulti.py
 
 2.2 若选择功能1，需要先复制抖音博主主页地址
 
-![step1](./Resource/userHomeStep1.jpg)
-![step2](./Resource/userHomeStep2.png)
-![step3](./Resource/userHomeStep3.png)
+<div style='display:flex;'>
+    <img width='375px' height='667px' src='./Resource/userHomeStep1.jpg'>
+    &nbsp;&nbsp;&nbsp;
+    <img width='375px' height='667px' src='./Resource/userHomeStep2.png'>
+    &nbsp;&nbsp;&nbsp;
+    <img width='375px' height='667px' src='./Resource/userHomeStep3.png'>
+</div>
+
 
 2.3 复制地址，进行下载。
 ps:若遇到报错，请重新下载。基本上是服务器抽风
