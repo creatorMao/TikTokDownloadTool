@@ -28,15 +28,29 @@
 敬请期待
 
 ## 2. 源码运行
-请下载源码，在终端运行以下命令。
+
+2.1 请下载源码，在终端运行以下命令，进入程序。
 
 ~~~
 python TikTokMulti.py
 ~~~
 ![python环境](./Resource/guide.jpg)
 
-# 说明
-- 文件保存在Download文件里，以名称分类
+2.2 若选择功能1，需要先复制抖音博主主页地址
+
+![step1](./Resource/userHomeStep1.jpg)
+![step2](./Resource/userHomeStep2.png)
+![step3](./Resource/userHomeStep3.png)
+
+2.3 复制地址，进行下载。
+ps:若遇到报错，请重新下载。基本上是服务器抽风
+
+![step3](./Resource/fullDownload.jpg)
+
+2.4 文件保存在Download文件里，以名称分类
+
 ![python环境](./Resource/download.jpg)
+
+# 说明
 
 - 增量下载功能是根据Download文件里有无相同名称的视频来判断的，所以建议不要删除此文件夹里的视频，否则增量下载功能将失效。
