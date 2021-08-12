@@ -36,7 +36,7 @@ python TikTokMulti.py
 ~~~
 ![python环境](./Resource/guide.jpg)
 
-### 2.1 若输入1，则需要复制抖音博主主页地址
+### 2.1 若输入1，选择全量下载。则需要复制抖音博主主页地址
 
 <div style='display:flex;'>
     <img width='375px' height='667px' src='./Resource/userHomeStep1.jpg'>
@@ -53,17 +53,19 @@ ps:若遇到报错，请重新下载。基本上是服务器抽风
 ![step3](./Resource/fullDownload.jpg)
 
 
-### 2.2 若输入2，则进行增量下载。
+### 2.2 若输入2，进行增量下载。
 
 ![增量下载](./Resource/updateDownload.jpg)
 
 
 ## 3. 定时增量下载
-Linux下，定时运行以下此命令，实现定时增量下载。
+Linux下，定时运行以下命令，可实现定时增量下载。从此解放双手~
 
 ~~~
+# 此命令执行后，无需选择功能，直接进入增量下载模式
 python3 autoUpdate.py
 ~~~
+
 
 
 # 说明
