@@ -63,7 +63,7 @@ Linux下，定时运行以下命令，可实现定时增量下载。从此解放
 
 ~~~
 # 此命令执行后，无需选择功能，直接进入增量下载模式
-python3 autoUpdate.py
+python3 autoDownload.py
 ~~~
 
 
