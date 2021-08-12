@@ -10,7 +10,7 @@ import TikTokDownload
 
 class TikTok():
     #初始化
-    def __init__(self):
+    def __init__(self,downloadType):
         self.headers = {
             'user-agent': 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36 Edg/87.0.664.66'
         }
@@ -49,7 +49,7 @@ class TikTok():
         self.musicarg = self.cf.get("music", "musicarg")
 
         #读取用户主页地址
-        self.userInput = input('请选择一种功能(输入功能的序号):')
+        self.userInput = '2' if downloadType!='' else input('请选择一种功能(输入功能的序号):')
 
         #读取下载模式
         self.mode = self.cf.get("mode", "mode")
@@ -384,5 +384,5 @@ class TikTok():
 
 #主模块执行
 if __name__ == "__main__":
-    RTK = TikTok()
+    RTK = TikTok('')
     sys.exit()
