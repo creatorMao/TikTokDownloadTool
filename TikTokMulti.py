@@ -334,7 +334,7 @@ class TikTok():
                                     print('\r'+'[下载进度]:%s%.2f%%' % (
                                         '>'*int(size*50 / content_size), float(size / content_size * 100)), end=' ')
                                 end = time.time()  # 下载结束时间
-                                print('\n' + '[下载完成]:耗时: %.2f秒\n' %
+                                print('\n' + '[下载结果]:已下载，耗时: %.2f秒\n' %
                                       (end - start))  # 输出下载用时时间
                     except:
                         input('下载音频出错!\r')
@@ -353,7 +353,7 @@ class TikTok():
 
                 if os.path.isfile(v_url) or os.path.isfile(v_url_OLD) or os.path.isfile(v_url_short):  # 判断视频是否存在，避免重复下载
                     print('[保存地址]:'+v_url_short)
-                    print("文件已下载，已为你跳过")
+                    print("[下载结果]:视频已下载，已为你跳过~")
                     if isUpdateFlag == True:
                         return
                     continue
@@ -374,7 +374,7 @@ class TikTok():
                                 print('\r'+'[下载进度]:%s%.2f%%' % (
                                     '>'*int(size*50 / content_size), float(size / content_size * 100)), end=' ')
                             end = time.time()  # 下载结束时间
-                            print('\n' + '[下载完成]:耗时: %.2f秒\n' %
+                            print('\n' + '[下载结果]:已下载，耗时: %.2f秒\n' %
                                   (end - start))  # 输出下载用时时间
                 except Exception as error:
                     print(error)
