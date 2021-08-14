@@ -349,6 +349,8 @@ class TikTok():
                 v_url_short = self.save + self.mode + '/' + nickname[i] + '/' + shortFileName+str(aweme_id[i]) + '.mp4'
                 
                 if os.path.isfile(v_url) or os.path.isfile(v_url_OLD) or os.path.isfile(v_url_short):  # 判断视频是否存在，避免重复下载
+                    print('')
+                    print('[保存地址]:'+v_url_short)
                     print("文件已下载，已为你跳过")
                     if isUpdateFlag == True:
                         return
