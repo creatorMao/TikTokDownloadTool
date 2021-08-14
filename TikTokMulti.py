@@ -193,9 +193,9 @@ class TikTok():
             self.mode, key, str(self.count), max_cursor)
         index = 0
         result = []
-        while self.end == False and index <= 4:
+        while self.end == False:
             #回到首页，则结束
-            if max_cursor == 0:
+            if max_cursor == 0  or index >= 4:
                 self.end = True
                 return
             index += 1
