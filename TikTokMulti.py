@@ -33,11 +33,14 @@ class TikTok():
         print("#" * 130)
         print('\r')
 
+        #获取当前目录
+        self.root_dir= os.path.dirname(__file__)
+
         #实例化读取配置文件
         self.cf = configparser.ConfigParser()
 
         #用utf-8防止出错
-        self.cf.read("conf.ini", encoding="utf-8")
+        self.cf.read(self.root_dir+"/conf.ini", encoding="utf-8")
 
         #读取保存路径
         self.save = self.cf.get("save", "url")
@@ -92,7 +95,7 @@ class TikTok():
                     self.cf.remove_section("url")
                     self.cf.add_section("url")
                     self.cf.set("url", "incrementalUpdateUserList", (hisIncrementalUpdateUserList + ("" if hisIncrementalUpdateUserList == "" else ",")+currentUser))
-                    self.cf.write(open('conf.ini', "w"))
+                    self.cf.write(open(self.root_dir+'/conf.ini', "w"))
                 print('已将该博主，放入到增量下载列表中。下次你可选择功能2(增量下载),来下载该博主新更新的内容。');            
                      
         elif self.userInput == '2':
