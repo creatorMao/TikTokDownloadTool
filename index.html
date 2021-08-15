@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>批量下载抖音无水印视频</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-base64@3.6.1/base64.min.js"></script>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    .ssh-wrap{
+        width: 100%;
+        flex:1;
+    }
+    html,body,.wrap,.fit{
+        width: 100%;
+        height:100%;
+    }
+    .wrap{
+        display: flex;
+        flex-direction: column;
+    }
+    .button-wrap{
+    }
+    iframe{
+        border: none;
+    }
+</style>
+<script>
+    window.sshUrl="http://xxxxxxxxxxx/?hostname=xxxxxxx1&port=xxxxxx&username=root&password=cm9vdA==";
+    window.firstLoad=true;
+    init=function(){
+        if(window.firstLoad){
+            document.getElementById("ssh").src=window.sshUrl
+            window.firstLoad=false;
+        }
+    }
+    update=function(){
+        document.getElementById("ssh").src=window.sshUrl+"&command=python3 /opt/TikTokDownloadTool/autoDownload.py"
+    }
+</script>
+<body>
+    <div class="wrap">
+        <div class="button-wrap">
+            <button onclick="update()">增量更新</button>
+        </div>
+        <div class="ssh-wrap">
+            <iframe id="ssh" class="fit" onload="init()"></iframe>
+        </div>
+    </div>
+</body>
+</html>
