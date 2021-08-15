@@ -43,7 +43,7 @@ class TikTok():
         self.cf.read(self.root_dir+"/conf.ini", encoding="utf-8")
 
         #读取保存路径
-        self.save = self.cf.get("save", "url")
+        self.save = self.root_dir+self.cf.get("save", "url")
 
         #读取下载视频个数
         self.count = int(self.cf.get("count", "count"))
