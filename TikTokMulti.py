@@ -10,7 +10,7 @@ import TikTokDownload
 
 class TikTok():
     #初始化
-    def __init__(self,downloadType):
+    def __init__(self,downloadType,homePageUrl):
         self.headers = {
             'user-agent': 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36 Edg/87.0.664.66'
         }
@@ -34,7 +34,7 @@ class TikTok():
         print('\r')
 
         #获取当前目录
-        self.root_dir= os.path.dirname(__file__)
+        self.root_dir= os.path.abspath(os.path.dirname(__file__))
 
         #实例化读取配置文件
         self.cf = configparser.ConfigParser()
@@ -52,7 +52,7 @@ class TikTok():
         self.musicarg = self.cf.get("music", "musicarg")
 
         #读取用户主页地址
-        self.userInput = '2' if downloadType!='' else input('请选择一种功能(输入功能的序号):')
+        self.userInput = downloadType if downloadType!='' else input('请选择一种功能(输入功能的序号):')
 
         #读取下载模式
         self.mode = self.cf.get("mode", "mode")
@@ -71,7 +71,7 @@ class TikTok():
         self.incrementalUpdateUserList = [] if hisIncrementalUpdateUserList=="" else hisIncrementalUpdateUserList.split(',')
 
         if self.userInput == '1':
-            self.uid = input(
+            self.uid = homePageUrl if homePageUrl!='' else input(
                 '请输入完整的个人主页地址(例如'+self.userHomePageExmple+'):')
 
             if self.uid=="":
@@ -389,5 +389,5 @@ class TikTok():
 
 #主模块执行
 if __name__ == "__main__":
-    RTK = TikTok('')
+    RTK = TikTok('','')
     sys.exit()

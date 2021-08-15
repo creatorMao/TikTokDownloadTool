@@ -25,13 +25,17 @@
         flex-direction: column;
     }
     .button-wrap{
+
     }
     iframe{
         border: none;
     }
+    #homePageUrl{
+        width: 400px;
+    }
 </style>
 <script>
-    window.sshUrl="http://xxxxxxxxxxx/?hostname=xxxxxxx1&port=xxxxxx&username=root&password=cm9vdA==";
+    window.sshUrl="http://xxxxxxxxx/?hostname=xxxxxxx&port=xxxxxxx&username=root&password=cm9vdA==";
     window.firstLoad=true;
     init=function(){
         if(window.firstLoad){
@@ -42,11 +46,28 @@
     update=function(){
         document.getElementById("ssh").src=window.sshUrl+"&command=python3 /opt/TikTokDownloadTool/autoDownload.py"
     }
+    fullDownload=function(){
+        var homePageUrl=document.getElementById("homePageUrl").value;
+        if(!homePageUrl)
+        {
+            alert("请复制博主主页地址！");
+            return;
+        }
+        document.getElementById("ssh").src=window.sshUrl+"&command=python3 /opt/TikTokDownloadTool/fullDownload.py "+homePageUrl
+    }
 </script>
 <body>
     <div class="wrap">
         <div class="button-wrap">
-            <button onclick="update()">增量更新</button>
+            <div>
+                功能1：
+                <input id="homePageUrl">
+                <button onclick="fullDownload()">全量更新</button>
+            </div>
+            <div>
+                功能2：
+                <button onclick="update()">增量更新</button>
+            </div>
         </div>
         <div class="ssh-wrap">
             <iframe id="ssh" class="fit" onload="init()"></iframe>
