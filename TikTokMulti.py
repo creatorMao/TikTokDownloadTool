@@ -220,6 +220,46 @@ class TikTok():
                 print('----', max_cursor, '页抓获数据失败----\r')
                 #sys.exit()
 
+    def download(self,type,title,saveUrlList,orignUrl):
+        typeName="文件";
+        if type=="mp4":
+            typeName="视频"
+        if type=="jpeg":
+            typeName="图片"
+
+        print('')
+        print('['+typeName+'标题]:'+title)
+
+        #判断视频是否存在，避免重复下载
+        for i in range(len(saveUrlList)):
+            if os.path.isfile(saveUrlList[i]):  
+                print('[保存地址]:'+saveUrlList[i])
+                print("[下载结果]:视频已经下载过，已为你跳过~")
+                return True
+
+        video = requests.get(orignUrl)  # 保存视频
+        start = time.time()  # 下载开始时间
+        size = 0  # 初始化已下载大小
+        chunk_size = 1024  # 每次下载的数据大小
+        content_size = int(video.headers['content-length'])  # 下载文件总大小
+        try:
+            if video.status_code == 200:  # 判断是否响应成功
+                print('['+typeName+'大小]:{size:.2f} MB'.format(
+                    size=content_size / chunk_size / 1024))
+                print('[保存地址]:'+saveUrlList[0])
+                with open(saveUrlList[0], 'wb') as file:  # 显示进度条
+                    for data in video.iter_content(chunk_size=chunk_size):
+                        file.write(data)
+                        size += len(data)
+                        print('\r'+'[下载进度]:%s%.2f%%' % ('>'*int(size*50 / content_size), float(size / content_size * 100)), end=' ')
+                    end = time.time()  # 下载结束时间
+                    print('\n' + '[下载结果]:下载成功！耗时: %.2f秒\n' % (end - start))  # 输出下载用时时间
+                    return True
+        except Exception as error:
+            print('[下载结果]:下载'+typeName+'出错!')
+            print('[错误原因]:'+error)
+            return False
+
     #处理视频信息
     def video_info(self, result, max_cursor, userId, isUpdateFlag):
         #作者信息
@@ -283,23 +323,15 @@ class TikTok():
                 photoUrl = self.save + self.mode + '/' + nickname + '/' + name+ str(id)+str(i) + '.jpeg'
                 photoShortUrl=self.save + self.mode + '/' + nickname + '/' + self.dealFileName(name)+ str(id)+str(i) + '.jpeg'
 
-                if os.path.isfile(photoUrl) or os.path.isfile(photoShortUrl):
-                    print("文件已下载，已为你跳过")
-                    if isUpdateFlag == True:
-                        return
-                    continue
-                
-                print('开始下载图片'+photoShortUrl)
+                downloadFlag=self.download('jpeg',name,[photoShortUrl,photoUrl],imagesUrl)
 
-                photo = requests.get(imagesUrl)  # 保存图片
-                if photo.status_code == 200:
-                    with open(photoShortUrl, 'wb') as file:
-                        file.write(photo.content)
-                        print('图片下载成功')
+                if downloadFlag==True and isUpdateFlag == True:
+                    return
+                continue
 
         except Exception as error:
             print("图片下载错误："+error)
-
+            
     def videos_download(self, author_list, video_list, aweme_id, nickname, max_cursor, userId, isUpdateFlag):
         for i in range(len(video_list)):
             try:
@@ -310,78 +342,18 @@ class TikTok():
                 pass
 
             try:
-                if self.musicarg == "yes":  # 保留音频
-                    # 官方接口
-                    jx_url = f'https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/?item_ids={aweme_id[i]}'
-                    js = json.loads(requests.get(
-                        url=jx_url, headers=self.headers).text)
-                    music_url = str(js['item_list'][0]['music']
-                                    ['play_url']['url_list'][0])
-                    music_title = str(js['item_list'][0]['music']['author'])
-                    music = requests.get(music_url)  # 保存音频
-                    start = time.time()  # 下载开始时间
-                    size = 0  # 初始化已下载大小
-                    chunk_size = 1024  # 每次下载的数据大小
-                    content_size = int(
-                        music.headers['content-length'])  # 下载文件总大小
-                    try:
-                        if music.status_code == 200:  # 判断是否响应成功
-                            print('[  音频  ]:'+author_list[i]+'[文件 大小]:{size:.2f} MB'.format(
-                                size=content_size / chunk_size / 1024))  # 开始下载，显示下载文件大小
-                            m_url = self.save + self.mode + '/' + nickname[i] + '/' + re.sub(
-                                r'[\\/:*?"<>|\r\n]+', "_", music_title) + '_' + author_list[i] + '.mp3'
-                            with open(m_url, 'wb') as file:  # 显示进度条
-                                for data in music.iter_content(chunk_size=chunk_size):
-                                    file.write(data)
-                                    size += len(data)
-                                    print('\r'+'[下载进度]:%s%.2f%%' % (
-                                        '>'*int(size*50 / content_size), float(size / content_size * 100)), end=' ')
-                                end = time.time()  # 下载结束时间
-                                print('\n' + '[下载结果]:已下载，耗时: %.2f秒\n' %
-                                      (end - start))  # 输出下载用时时间
-                    except:
-                        input('下载音频出错!\r')
-            except Exception as error:
-                print("下载错误："+error)
-
-            try:
                 fileName=re.sub(r'[\\/:*?"<>|\r\n]+', "_", author_list[i])
                 shortFileName=self.dealFileName(fileName)
                 v_url = self.save + self.mode + '/' + nickname[i] + '/' + fileName+str(aweme_id[i]) + '.mp4'
                 v_url_OLD = self.save + self.mode + '/' + nickname[i] + '/' + fileName + '.mp4'
                 v_url_short = self.save + self.mode + '/' + nickname[i] + '/' + shortFileName+str(aweme_id[i]) + '.mp4'
                 
-                print('')
-                print('[视频标题]:'+author_list[i])  # 开始下载，显示下载文件大小
+                downloadFlag=self.download('mp4',author_list[i],[v_url_short,v_url_OLD,v_url],video_list[i])
 
-                if os.path.isfile(v_url) or os.path.isfile(v_url_OLD) or os.path.isfile(v_url_short):  # 判断视频是否存在，避免重复下载
-                    print('[保存地址]:'+v_url_short)
-                    print("[下载结果]:视频已下载，已为你跳过~")
-                    if isUpdateFlag == True:
-                        return
-                    continue
-                
-                video = requests.get(video_list[i])  # 保存视频
-                start = time.time()  # 下载开始时间
-                size = 0  # 初始化已下载大小
-                chunk_size = 1024  # 每次下载的数据大小
-                content_size = int(video.headers['content-length'])  # 下载文件总大小
-                try:
-                    if video.status_code == 200:  # 判断是否响应成功
-                        print('[文件大小]:{size:.2f} MB'.format(size=content_size / chunk_size / 1024))
-                        print('[保存地址]:'+v_url_short)
-                        with open(v_url_short, 'wb') as file:  # 显示进度条
-                            for data in video.iter_content(chunk_size=chunk_size):
-                                file.write(data)
-                                size += len(data)
-                                print('\r'+'[下载进度]:%s%.2f%%' % (
-                                    '>'*int(size*50 / content_size), float(size / content_size * 100)), end=' ')
-                            end = time.time()  # 下载结束时间
-                            print('\n' + '[下载结果]:已下载，耗时: %.2f秒\n' %
-                                  (end - start))  # 输出下载用时时间
-                except Exception as error:
-                    print(error)
-                    input('下载视频出错!\r')
+                if downloadFlag==True and isUpdateFlag == True:
+                    return
+                continue
+
             except Exception as error:
                 print(error)
         self.next_data(max_cursor, userId, isUpdateFlag)
