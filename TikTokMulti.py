@@ -5,8 +5,6 @@ import time
 import configparser
 import re
 import sys
-import TikTokDownload
-
 
 class TikTok():
     #初始化
