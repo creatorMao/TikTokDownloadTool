@@ -48,9 +48,6 @@ class TikTok():
         #读取下载视频个数
         self.count = int(self.cf.get("count", "count"))
 
-        #读取下载是否下载音频
-        self.musicarg = self.cf.get("music", "musicarg")
-
         #读取用户主页地址
         self.userInput = downloadType if downloadType!='' else input('请选择一种功能(输入功能的序号):')
 
