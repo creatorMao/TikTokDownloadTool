@@ -1,6 +1,10 @@
 # 版权说明
 本项目fork自[Johnserf-Seed TikTokDownload](https://github.com/Johnserf-Seed/TikTokDownload)。目的是为了增加个性化的功能，若想体验更多完善的功能请支持原作者的项目。
 
+# 免责声明
+本代码仅用于学习，下载后请勿用于商业用途。
+
+
 # 环境要求
 - 请检查宿主机，是否安装了python环境，并且配置了环境变量
 ~~~
