@@ -282,13 +282,18 @@ class TikTok():
 
                 ##图片下载
                 if str(result[i2]['aweme_type']) == "2":
-                    self.photos_download(title, id, nick, isUpdateFlag)
+                    downloadFlag=self.photos_download(title, id, nick)
+                    if downloadFlag==True and isUpdateFlag == True:
+                        break
+                    continue
 
             except Exception as error:
                 print(error)
                 pass
+
         self.videos_download(author_list, video_list, aweme_id,
                              nickname, max_cursor, userId, isUpdateFlag)
+
         return self, author_list, video_list, aweme_id, nickname, max_cursor
     
     # 处理文件名称，如果太长则截取，只取50个字
@@ -298,7 +303,7 @@ class TikTok():
         return name
 
     #图片下载
-    def photos_download(self, author_name, id, nickname, isUpdateFlag):
+    def photos_download(self, author_name, id, nickname):
         try:
             #创建并检测下载目录是否存在
             os.makedirs(self.save + self.mode + '/' + nickname)
@@ -311,6 +316,8 @@ class TikTok():
             js = json.loads(requests.get(
                 url=jx_url, headers=self.headers).text)
             images = js['item_list'][0]['images']
+            
+            downloadFlag=True
             for i in range(len(images)):
                 imagesUrl = str(images[i]['url_list'][0])
                 
@@ -320,12 +327,11 @@ class TikTok():
 
                 downloadFlag=self.download('jpeg',name,[photoShortUrl,photoUrl],imagesUrl)
 
-                if downloadFlag==True and isUpdateFlag == True:
-                    return
-                continue
+            return downloadFlag
 
         except Exception as error:
             print("图片下载错误："+error)
+            return False
             
     def videos_download(self, author_list, video_list, aweme_id, nickname, max_cursor, userId, isUpdateFlag):
         for i in range(len(video_list)):
