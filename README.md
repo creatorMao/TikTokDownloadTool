@@ -66,7 +66,7 @@ ps:若遇到报错，请重新下载。基本上是服务器抽风
 |  功能   | 命令样例  |
 |  ----  | ----  |
 | 普通模式  | python TikTokMulti.py |
-| 快速全量下载  | python TikTokMulti.py 1 https://v.douyin.com/dedtfUQ/ |
+| 快速全量下载  | python TikTokMulti.py 1 https://v.douyin.com/JcjJ5Tq/ |
 | 快速增量下载  |  python TikTokMulti.py 2 |
 
 # 说明
