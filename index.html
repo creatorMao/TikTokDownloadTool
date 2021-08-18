@@ -35,7 +35,7 @@
     }
 </style>
 <script>
-    window.sshUrl="http://xxxxxxxxx/?hostname=xxxxxxx&port=xxxxxxx&username=root&password=cm9vdA==";
+    window.sshUrl="";
     window.firstLoad=true;
     init=function(){
         if(window.firstLoad){
@@ -44,7 +44,7 @@
         }
     }
     update=function(){
-        document.getElementById("ssh").src=window.sshUrl+"&command=python3 /opt/TikTokDownloadTool/autoDownload.py"
+        document.getElementById("ssh").src=window.sshUrl+"&command=python3 /opt/TikTokDownloadTool/TikTokMulti.py 2"
     }
     fullDownload=function(){
         var homePageUrl=document.getElementById("homePageUrl").value;
@@ -53,7 +53,7 @@
             alert("请复制博主主页地址！");
             return;
         }
-        document.getElementById("ssh").src=window.sshUrl+"&command=python3 /opt/TikTokDownloadTool/fullDownload.py "+homePageUrl
+        document.getElementById("ssh").src=window.sshUrl+"&command=python3 /opt/TikTokDownloadTool/TikTokMulti.py 1 "+homePageUrl
     }
 </script>
 <body>
@@ -66,7 +66,7 @@
             </div>
             <div>
                 功能2：
-                <button onclick="update()">全量下载</button>
+                <button onclick="update()">增量下载</button>
             </div>
         </div>
         <div class="ssh-wrap">

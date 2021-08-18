@@ -362,5 +362,10 @@ class TikTok():
 
 #主模块执行
 if __name__ == "__main__":
-    RTK = TikTok('','')
+    if len(sys.argv)==3:
+        RTK = TikTok(sys.argv[1],str(sys.argv[2]))
+    elif len(sys.argv)==2:
+        RTK = TikTok(sys.argv[1],'')
+    else:
+        RTK = TikTok('','')
     sys.exit()

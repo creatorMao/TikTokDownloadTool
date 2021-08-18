@@ -62,15 +62,12 @@ ps:若遇到报错，请重新下载。基本上是服务器抽风
 ![增量下载](./Resource/updateDownload.jpg)
 
 
-## 3. 定时增量下载
-Linux下，定时运行以下命令，可实现定时增量下载。从此解放双手~
-
-~~~
-# 此命令执行后，无需选择功能，直接进入增量下载模式
-python3 autoDownload.py
-~~~
-
-
+## 3. 快捷命令
+|  功能   | 命令样例  |
+|  ----  | ----  |
+| 普通模式  | python TikTokMulti.py |
+| 快速全量下载  | python TikTokMulti.py 1 https://v.douyin.com/dedtfUQ/ |
+| 快速增量下载  |  python TikTokMulti.py 2 |
 
 # 说明
 
