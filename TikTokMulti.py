@@ -83,15 +83,13 @@ class TikTok():
             print('')
             print('全量下载已完成！')   
 
-            userChoose=input('是否需要将此博主加入到增量下载列表？(回车默认加入，输入任意文字代表不加入):')
-            if userChoose=='':
-                currentUser=self.uid.replace(self.userHomePagePrefix, '')
-                if currentUser not in hisIncrementalUpdateUserList:
-                    self.cf.remove_section("url")
-                    self.cf.add_section("url")
-                    self.cf.set("url", "incrementalUpdateUserList", (hisIncrementalUpdateUserList + ("" if hisIncrementalUpdateUserList == "" else ",")+currentUser))
-                    self.cf.write(open(self.root_dir+'/conf.ini', "w"))
-                print('已将该博主，放入到增量下载列表中。下次你可选择功能2(增量下载),来下载该博主新更新的内容。');            
+            currentUser=self.uid.replace(self.userHomePagePrefix, '')
+            if currentUser not in hisIncrementalUpdateUserList:
+                self.cf.remove_section("url")
+                self.cf.add_section("url")
+                self.cf.set("url", "incrementalUpdateUserList", (hisIncrementalUpdateUserList + ("" if hisIncrementalUpdateUserList == "" else ",")+currentUser))
+                self.cf.write(open(self.root_dir+'/conf.ini', "w"))
+            print('已将该博主，放入到增量下载列表中。下次你可选择功能2(增量下载),来下载该博主新更新的内容。');            
                      
         elif self.userInput == '2':
             updateLength=len(self.incrementalUpdateUserList)
