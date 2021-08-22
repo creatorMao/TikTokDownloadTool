@@ -247,7 +247,7 @@ class TikTok():
                         print('\r'+'[下载进度]:%s%.2f%%' % ('>'*int(size*50 / content_size), float(size / content_size * 100)), end=' ')
                     end = time.time()  # 下载结束时间
                     print('\n' + '[下载结果]:下载成功！耗时: %.2f秒\n' % (end - start))  # 输出下载用时时间
-                    return True
+                    return False
         except Exception as error:
             print('[下载结果]:下载'+typeName+'出错!')
             print('[错误原因]:'+error)
