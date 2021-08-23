@@ -29,7 +29,16 @@
 
 
 ## 1. Docker 
-目前只支持源码运行，等功能完善后，再封装docker
+
+~~~
+docker pull creatormao/tiktokdownloadtool:latest
+
+docker run -d -v /volume1/docker/TEST-DOWN:/opt/TikTokDownloadTool/Download --name titokdownload -p 9222:22 -p 9876:8000 -p 9654:8888 creatormao/tiktokdownloadtool:latest sh -c "/etc/init.d/ssh start && /bin/bash & python /opt/TikTokDownloadTool/web/run.py & python /code/run.py"
+~~~
+
+ps: 将  /volume1/docker/TEST-DOWN 改成实际宿主的文件夹，此文件夹用于存放下载的视频
+
+安装完成后，访问: http://宿主机ip:9876
 
 ![web](./Resource/web-download.png)
 
