@@ -1,3 +1,6 @@
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+<script src="../static/js/base64.min.js"></script>
+
 <style>
     *{
         padding: 0;
@@ -16,7 +19,6 @@
         flex-direction: column;
     }
     .button-wrap>div{
-        padding: 5px;
         display: flex;
         margin: 5px 0px;
         align-items: center;
@@ -51,7 +53,7 @@
         "&username="+
         document.getElementById("SSHInfo_user").value+
         "&password="+
-        document.getElementById("SSHInfo_password").value;
+        Base64.encode(document.getElementById("SSHInfo_password").value);
     },
     setIframeUrl=function(src){
         document.getElementById("ssh").src=src
@@ -59,6 +61,15 @@
     window.firstLoad=true;
     init=function(){
         if(window.firstLoad){
+            if(!document.getElementById("SSHInfo_ip").value)
+            {
+                document.getElementById("SSHInfo_ip").value=location.hostname;
+            }
+            if(!document.getElementById("webSSHInfo_ip").value)
+            {
+                document.getElementById("webSSHInfo_ip").value=location.hostname;
+            }
+
             setIframeUrl(getSSHuRL())
             window.firstLoad=false;
         }
@@ -75,6 +86,36 @@
 
         setIframeUrl(getSSHuRL()+"&command=python3 /opt/TikTokDownloadTool/TikTokMulti.py 1 "+homePageUrl);
     }
+    saveConfig = function () {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/saveConfig",
+                    data: {
+                        "config": JSON.stringify({
+                            "SSHInfo": {
+                                "ip": document.getElementById("SSHInfo_ip").value,
+                                "port": document.getElementById("SSHInfo_port").value,
+                                "user": document.getElementById("SSHInfo_user").value,
+                                "password": document.getElementById("SSHInfo_password").value
+                            },
+                            "webSSHInfo": {
+                                "ip": document.getElementById("webSSHInfo_ip").value,
+                                "port": document.getElementById("webSSHInfo_port").value
+                            }
+                        })
+                    },
+                    header:{ "Content-Type": "application/x-www-form-urlencoded"},
+                    success: function (msg) {
+                        alert("保存配置成功！");
+                        setIframeUrl(getSSHuRL())
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                        alert("保存配置失败！"+error);
+                    }
+                });
+        }
 </script>
 <body>
     <div class="wrap">
@@ -87,6 +128,8 @@
                     </div>
                 {% endfor %}
             {% endfor %}
+            <button onclick="saveConfig()">保存配置</button>
+            <div>-------------------------------------------------------------------</div>
             <div>
                 <span>功能1：</span>
                 <input class="input" id="homePageUrl">

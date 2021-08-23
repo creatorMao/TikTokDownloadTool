@@ -3,7 +3,7 @@
         "ip": "192.168.1.11",
         "port": "9222",
         "user": "root",
-        "password": "cm9vdA=="
+        "password": "root"
     },
     "webSSHInfo": {
         "ip": "192.168.1.11",
