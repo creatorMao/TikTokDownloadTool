@@ -1,5 +1,9 @@
-# 版权说明
-本项目fork自[Johnserf-Seed TikTokDownload](https://github.com/Johnserf-Seed/TikTokDownload)。目的是为了增加个性化的功能，若想体验更多完善的功能请支持原作者的项目。
+# 版权说明&Fork原因
+本项目下载逻辑fork自[Johnserf-Seed TikTokDownload](https://github.com/Johnserf-Seed/TikTokDownload)。
+
+fork原项目的目的是为了增加个性化的功能(若你和我一样，喜欢一个人就爱屋及乌,他所有的视频,包括每天新更新的，你都想下载的话，本项目比较适合你~)
+
+本项目暂不支持单个视频下载，若想体验更多完善的功能请支持原作者的项目。
 
 # 免责声明
 本代码仅用于学习，下载后请勿用于商业用途。
