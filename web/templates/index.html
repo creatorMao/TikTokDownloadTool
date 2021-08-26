@@ -82,7 +82,14 @@
             document.getElementById("homePageUrl").value=homePageUrl;
         }
 
-        setIframeUrl(getSSHuRL()+"&command=python3 /opt/TikTokDownloadTool/TikTokMulti.py 1 "+homePageUrl);
+        setIframeUrl(getSSHuRL()+"&command=python3 /opt/TikTokDownloadTool/TikTokMulti.py 1 "+filterDoubleByteCharacter(homePageUrl));
+    }
+    filterDoubleByteCharacter=function(text){
+        if(text)
+        {
+            return text.replace(new RegExp(/[^\x00-\xff]/g),"").replace(" ","")
+        }
+        return ""
     }
     saveConfig = function () {
             $.ajax(
