@@ -48,7 +48,7 @@ ps: 将  /volume1/docker/TEST-DOWN 改成实际宿主的文件夹，此文件夹
 
 ## 2. 命令行程序
 
-请下载源码，在终端运行以下命令，进入程序。
+请下载源码，在终端运行以下命令，或直接执行start.bat批处理程序,进入程序。
 
 ~~~
 python TikTokMulti.py
