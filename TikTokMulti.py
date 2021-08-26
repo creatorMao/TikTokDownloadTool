@@ -66,8 +66,10 @@ class TikTok():
         self.incrementalUpdateUserList = [] if hisIncrementalUpdateUserList=="" else hisIncrementalUpdateUserList.split(',')
 
         if self.userInput == '1':
-            self.uid = homePageUrl if homePageUrl!='' else input(
-                '请输入完整的个人主页地址(例如'+self.userHomePageExmple+'):')
+            self.uid = homePageUrl if homePageUrl!='' else self.filterDoubleByteCharacter(input(
+                '请输入完整的个人主页地址(例如'+self.userHomePageExmple+'):'))
+            
+            print(self.uid) 
 
             if self.uid=="":
                 print("你在干什么,地址不能为空的哦！")
@@ -212,6 +214,10 @@ class TikTok():
                 self.end == True
                 print('----', max_cursor, '页抓获数据失败----\r')
                 #sys.exit()
+    
+    #过滤掉双字节字符
+    def filterDoubleByteCharacter(self,text):
+        return re.sub("[^\x00-\xff]", '', text).replace(' ','')
 
     def download(self,type,title,saveUrlList,orignUrl):
         typeName="文件";
