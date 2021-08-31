@@ -44,7 +44,8 @@ ps: 将  /volume1/docker/TEST-DOWN 改成实际宿主的文件夹，此文件夹
 
 安装完成后，访问: http://宿主机ip:9876
 
-![web](./Resource/web-download.png)
+![web](./Resource/mobile.png)
+
 
 ## 2. 命令行程序
 
