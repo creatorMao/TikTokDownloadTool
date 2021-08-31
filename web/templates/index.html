@@ -25,9 +25,6 @@
         align-items: center;
         margin-left: 10px;
     }
-    .button-wrap>div>span{
-        min-width: 150px;
-    }
     iframe{
         border: none;
     }
@@ -84,6 +81,9 @@
 
         setIframeUrl(getSSHuRL()+"&command=python3 /opt/TikTokDownloadTool/TikTokMulti.py 1 "+filterDoubleByteCharacter(homePageUrl));
     }
+    cleanInput=function(){
+        document.getElementById("homePageUrl").value = "";
+    }
     filterDoubleByteCharacter=function(text){
         if(text)
         {
@@ -137,6 +137,7 @@
             <div>
                 <span>功能1：</span>
                 <input class="input" id="homePageUrl">
+                <button onclick="cleanInput()">清空</button>
                 <button onclick="fullDownload()">全量下载</button>
             </div>
             <div>
