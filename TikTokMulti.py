@@ -61,6 +61,11 @@ class TikTok():
         #用户主页地址样例
         self.userHomePageExmple = self.cf.get("api", "userHomePageExmple")
 
+        #本次视频下载数量
+        self.videoCount=0
+        #本次图片下载数量
+        self.photoCount=0
+
         #增量更新用户列表
         hisIncrementalUpdateUserList=self.cf.get("url", "incrementalUpdateUserList")
         self.incrementalUpdateUserList = [] if hisIncrementalUpdateUserList=="" else hisIncrementalUpdateUserList.split(',')
@@ -83,7 +88,7 @@ class TikTok():
                 return
 
             print('')
-            print('全量下载已完成！')   
+            self.printDownloadCount() 
 
             currentUser=self.uid.replace(self.userHomePagePrefix, '')
             if currentUser not in hisIncrementalUpdateUserList:
@@ -109,7 +114,7 @@ class TikTok():
                     (self.userHomePagePrefix+self.incrementalUpdateUserList[idx]), True)
             
             print('')
-            print('增量下载已完成！')
+            self.printDownloadCount()
         else:
             print("你在干什么，请输入正确的功能序号！")
             return
@@ -219,6 +224,14 @@ class TikTok():
     def filterDoubleByteCharacter(self,text):
         return re.sub("[^\x00-\xff]", '', text).replace(' ','')
 
+    #打印本次下载统计
+    def printDownloadCount(self):
+        mode="全量"
+        if self.userInput=="2":
+            mode="增量"
+        print(mode+"下载已完成!本次共下载"+str(self.videoCount)+"个视频,"+str(self.photoCount)+"张照片！")
+        pass
+
     def download(self,type,title,saveUrlList,orignUrl):
         typeName="文件";
         if type=="mp4":
@@ -286,8 +299,8 @@ class TikTok():
 
                 ##图片下载
                 if str(result[i2]['aweme_type']) == "2":
-                    downloadFlag=self.photos_download(title, id, nick)
-                    if downloadFlag==True and isUpdateFlag == True:
+                    alreadyExistFlag=self.photos_download(title, id, nick)
+                    if alreadyExistFlag==True and isUpdateFlag == True:
                         break
                     continue
 
@@ -321,7 +334,7 @@ class TikTok():
                 url=jx_url, headers=self.headers).text)
             images = js['item_list'][0]['images']
             
-            downloadFlag=True
+            alreadyExistFlag=True
             for i in range(len(images)):
                 imagesUrl = str(images[i]['url_list'][0])
                 
@@ -329,9 +342,12 @@ class TikTok():
                 photoUrl = self.save + self.mode + '/' + nickname + '/' + name+ str(id)+str(i) + '.jpeg'
                 photoShortUrl=self.save + self.mode + '/' + nickname + '/' + self.dealFileName(name)+ str(id)+str(i) + '.jpeg'
 
-                downloadFlag=self.download('jpeg',name,[photoShortUrl,photoUrl],imagesUrl)
+                alreadyExistFlag=self.download('jpeg',name,[photoShortUrl,photoUrl],imagesUrl)
 
-            return downloadFlag
+                if alreadyExistFlag==False:
+                    self.photoCount+=1
+
+            return alreadyExistFlag
 
         except Exception as error:
             print("图片下载错误："+error)
@@ -353,9 +369,12 @@ class TikTok():
                 v_url_OLD = self.save + self.mode + '/' + nickname[i] + '/' + fileName + '.mp4'
                 v_url_short = self.save + self.mode + '/' + nickname[i] + '/' + shortFileName+str(aweme_id[i]) + '.mp4'
                 
-                downloadFlag=self.download('mp4',author_list[i],[v_url_short,v_url_OLD,v_url],video_list[i])
+                alreadyExistFlag=self.download('mp4',author_list[i],[v_url_short,v_url_OLD,v_url],video_list[i])
 
-                if downloadFlag==True and isUpdateFlag == True:
+                if alreadyExistFlag==False:
+                    self.videoCount+=1
+
+                if alreadyExistFlag==True and isUpdateFlag == True:
                     return
                 continue
 
