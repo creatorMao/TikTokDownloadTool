@@ -108,7 +108,7 @@ class TikTok():
             print('本次增量更新总共有'+str(updateLength)+"个用户")
             for idx in range(updateLength):
                 print("")
-                print("正在更新第"+str(idx+1)+"个用户")
+                print("[下载队列]:正在更新第"+str(idx+1)+"个用户")
                 self.end = False
                 self.judge_link(
                     (self.userHomePagePrefix+self.incrementalUpdateUserList[idx]), True)
@@ -134,7 +134,6 @@ class TikTok():
 
         #判断输入的是不是用户主页
         if r.url[:28] == multi_url:
-            print('----正在为您下载主页上的视频----\r')
             key = re.findall('/user/(.*?)\?', str(r.url))[0]
             if not key:
                 key = r.url[28:83]
@@ -157,27 +156,40 @@ class TikTok():
         index = 0
         #存储api数据
         result = []
-        while result == [] and index <= 4:
+        
+        while result == [] and index <= 4 and self.end==False:
             index += 1
-            print('----正在进行第 %d 次尝试----\r' % index)
+
+            if index>=5:
+                print('[抓取日志]:第1页，抓取次数超过最大次数，即将为您跳过~骚瑞(sorry)~')
+
+            print('')
+            print('[抓取日志]:正在对第1页，进行第 %d 次抓取\r' % index)
             time.sleep(0.3)
             response = requests.get(url=api_post_url, headers=self.headers)
             html = json.loads(response.content.decode())
-            if self.end == False and 'aweme_list' in html.keys() and len(html['aweme_list']) > 0:
-                #下一页值
-                self.nickname = html['aweme_list'][0]['author']['nickname']
-                print('[  用户  ]:'+str(self.nickname)+'\r')
-                max_cursor = html['max_cursor']
-                result = html['aweme_list']
-                print('----抓获数据成功----\r')
 
-                #处理第一页视频信息
-                self.video_info(result, max_cursor, userId, isUpdateFlag)
-            else:
+            if 'max_cursor' in html.keys():
                 max_cursor = html['max_cursor']
+
+            # 先判断第一次接口是否正常，api经常抽风，获取不到aweme_list和max_cursor，判断5次，不行就彻底跳过
+            if 'aweme_list' in html.keys() and len(html['aweme_list']) > 0:
+                print('[抓取日志]:第1页，第 %d 次抓取成功！\r' % index)
+
+                if self.end == False:
+                    #下一页值
+                    self.nickname = html['aweme_list'][0]['author']['nickname']
+                    print('[用户名称]:'+str(self.nickname)+'\r')
+                    
+                    result = html['aweme_list']
+
+                    #处理第一页视频信息
+                    self.video_info(result, max_cursor, userId, isUpdateFlag)
+                else:
+                    self.next_data(max_cursor, userId, isUpdateFlag)
+            else:
+                print('[抓取日志]:第1页，无数据。')
                 self.next_data(max_cursor, userId, isUpdateFlag)
-                #self.end = True
-                print('----此页无数据，为您跳过----\r')
 
         return result, max_cursor
 
@@ -197,12 +209,22 @@ class TikTok():
         index = 0
         result = []
         while self.end == False:
-            #回到首页，则结束
+
+            #回到首页，获取抓取次数超过5次，则结束
             if max_cursor == 0  or index >= 4:
+                if max_cursor==0:
+                    print('[抓取日志]:当前是该用户的最后一页，即将为您跳过~')
+                
+                if index>=4:
+                    print('[抓取日志]:抓取次数超过最大次数，已跳过~骚瑞(sorry)~')
+
                 self.end = True
                 return
+
             index += 1
-            print('----正在对', max_cursor, '页进行第 %d 次尝试----\r' % index)
+            
+            print('')
+            print('[抓取日志]:正在对', max_cursor, '页,进行第',index,'次抓取')
             time.sleep(0.3)
             response = requests.get(
                 url=api_naxt_post_url, headers=self.headers)
@@ -212,13 +234,16 @@ class TikTok():
                 #下一页值
                 max_cursor = html['max_cursor']
                 result = html['aweme_list']
-                print('----', max_cursor, '页抓获数据成功----\r')
+                print('[抓取日志]:', max_cursor, '页抓取成功')
+
+                if len(result)==0:
+                    print('[抓取日志]:', max_cursor, '页无数据。')
+
                 #处理下一页视频信息
                 self.video_info(result, max_cursor, userId, isUpdateFlag)
             else:
                 self.end == True
-                print('----', max_cursor, '页抓获数据失败----\r')
-                #sys.exit()
+                print('[抓取日志]:', max_cursor, '页抓获数据失败')
     
     #过滤掉双字节字符
     def filterDoubleByteCharacter(self,text):
