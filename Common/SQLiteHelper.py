@@ -1,4 +1,3 @@
-from re import S
 import sqlite3
 
 class SQLiteHelper:
@@ -10,7 +9,7 @@ class SQLiteHelper:
     
     def execute(self,sql):
         self.cursor.execute(sql)
-        
+
         if self.db.total_changes>0:
             return True
         return False
