@@ -5,6 +5,7 @@ import time
 import configparser
 import re
 import sys
+import DBService
 
 class TikTok():
     #初始化
@@ -12,6 +13,10 @@ class TikTok():
         self.headers = {
             'user-agent': 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36 Edg/87.0.664.66'
         }
+        
+        #self.dbService=DBService.DBService()
+        #self.dbService.addUser(("1","2"))
+        #self.dbService.updateUserInfo("1","改名")
 
         #绘制布局
         print("#" * 130)
@@ -406,7 +411,6 @@ class TikTok():
             except Exception as error:
                 print(error)
         self.next_data(max_cursor, userId, isUpdateFlag)
-
 
 #主模块执行
 if __name__ == "__main__":
