@@ -1,6 +1,7 @@
 
 ![python](https://img.shields.io/badge/python-blue) ![Flask](https://img.shields.io/badge/Flask-green) ![SQLite](https://img.shields.io/badge/SQLite-yellow)
 
+#
 
 # 版权说明&Fork原因
 本项目下载逻辑fork自[Johnserf-Seed TikTokDownload](https://github.com/Johnserf-Seed/TikTokDownload)。
@@ -12,6 +13,9 @@ fork原项目的目的是为了增加个性化的功能(若你和我一样，喜
 # 免责声明
 本代码仅用于学习，下载后请勿用于商业用途。
 
+# Todo
+- [] 优化视频是否下载过判断逻辑，改成从数据库判断，而不是判断文件是否物理存在
+- [] 修复当用户更改名字后，增量下载又会重新下载一遍的问题~
 
 # 环境要求
 - 请检查宿主机，是否安装了python环境，并且配置了环境变量
