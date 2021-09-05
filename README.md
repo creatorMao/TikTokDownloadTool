@@ -1,3 +1,7 @@
+
+![python](https://img.shields.io/badge/python-blue) ![Flask](https://img.shields.io/badge/Flask-green) ![SQLite](https://img.shields.io/badge/SQLite-yellow)
+
+
 # 版权说明&Fork原因
 本项目下载逻辑fork自[Johnserf-Seed TikTokDownload](https://github.com/Johnserf-Seed/TikTokDownload)。
 
