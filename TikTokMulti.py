@@ -15,9 +15,7 @@ class TikTok():
             'user-agent': 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36 Edg/87.0.664.66'
         }
         
-        #self.dbService=DBService.DBService()
-        #self.dbService.addUser(("1","2"))
-        #self.dbService.updateUserInfo("1","改名")
+        self.dbService=DBService.DBService()
 
         #绘制布局
         print("#" * 130)
@@ -127,6 +125,7 @@ class TikTok():
             downloadEnd=time.time()
             self.downloadTimeCost=(datetime.datetime.fromtimestamp(downloadEnd)-datetime.datetime.fromtimestamp(downloadStart)).seconds
             print('[总耗时]:'+str(self.downloadTimeCost)+"秒！")
+            #self.dbService.addDownloadHistory(self.userInput,'1',self.downloadTimeCost,'success',self.videoCount,self.photoCount)
         else:
             print("你在干什么，请输入正确的功能序号！")
             return
