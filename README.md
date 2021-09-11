@@ -87,11 +87,11 @@ ps:若遇到报错，请重新下载。基本上是服务器抽风
 
 
 ## 3. 快捷命令
-|  功能   | 命令样例  |
-|  ----  | ----  |
-| 普通模式  | python TikTokMulti.py |
-| 快速全量下载  | python TikTokMulti.py 1 https://v.douyin.com/JcjJ5Tq/ |
-| 快速增量下载  |  python TikTokMulti.py 2 |
+| 功能         | 命令样例                                              |
+|------------|-------------------------------------------------------|
+| 普通模式     | python TikTokMulti.py                                 |
+| 快速全量下载 | python TikTokMulti.py 1 https://v.douyin.com/JcjJ5Tq/ |
+| 快速增量下载 | python TikTokMulti.py 2                               |
 
 # 说明
 
@@ -105,23 +105,23 @@ ps:若遇到报错，请重新下载。基本上是服务器抽风
 
 ## 增量更新用户表(T_UPDATE_USER)
 
-|  字段   | 名称  | 类型  |备注  |
-|  ----  | ----  |  ----  |----  |
-| SEC_ID  | 用户ID  | VARCHAR(500) |   |
-| NICK_NAME  | 用户名称  | VARCHAR(500) | |  
+| 字段      | 名称     | 类型         | 备注 |
+|-----------|--------|--------------|------|
+| SEC_ID    | 用户ID   | VARCHAR(500) |      |
+| NICK_NAME | 用户名称 | VARCHAR(500) |      |
 
 
 ## 下载记录表(T_DOWNLOAD_HISTORY)
 ps:可用于dashboard数据源
 
-|  字段   | 名称  | 类型  |备注  |
-|  ----  | ----  |  ----  |----  |
-| ID  | ID  | VARCHAR(500) |  主键 |
-| DOWNLOAD_TYPE  | 下载类型  |VARCHAR(50) | 1:全量  2：增量 |  
-| DOWNLOAD_STATE | 下载状态  |VARCHAR(50) | 1:成功  0：失败 |  
-| DOWNLOAD_TIME_COST | 下载耗时  |INTEGER | 单位:秒 | 
-| MESSAGE | 下载日志  |TEXT |  |  
-| VIDEO_COUNT  | 当次视频下载数量  |INTEGER |  |  
-| PHOTO_COUNT  | 当次图片下载数量  |INTEGER |  |  
-| IMP_DATE  | 日期  |VARCHAR(10) | 例:2020-09-10 |  
-| IMP_TIME  | 日期  |VARCHAR(19) | 例:2020-09-10 00:00:00 |  
+| 字段               | 名称             | 类型         | 备注                   |
+|--------------------|------------------|--------------|------------------------|
+| ID                 | ID               | VARCHAR(500) | 主键                   |
+| DOWNLOAD_TYPE      | 下载类型         | VARCHAR(50)  | 1:全量  2：增量         |
+| DOWNLOAD_STATE     | 下载状态         | VARCHAR(50)  | 1:成功  0：失败         |
+| DOWNLOAD_TIME_COST | 下载耗时         | INTEGER      | 单位:秒                |
+| MESSAGE            | 下载日志         | TEXT         |                        |
+| VIDEO_COUNT        | 当次视频下载数量 | INTEGER      |                        |
+| PHOTO_COUNT        | 当次图片下载数量 | INTEGER      |                        |
+| IMP_DATE           | 日期             | VARCHAR(10)  | 例:2020-09-10          |
+| IMP_TIME           | 日期             | VARCHAR(19)  | 例:2020-09-10 00:00:00 |
