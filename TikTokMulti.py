@@ -71,6 +71,8 @@ class TikTok():
         self.videoCount=0
         #本次图片下载数量
         self.photoCount=0
+        #本次增量下载时，耗时,单位秒
+        self.downloadTimeCost=0
 
         #增量更新用户列表
         hisIncrementalUpdateUserList=self.cf.get("url", "incrementalUpdateUserList")
