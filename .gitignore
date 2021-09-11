@@ -4,3 +4,4 @@ __pycache__/TikTokMulti.cpython-36.pyc
 *.pyc
 web/index copy.html
 conf1.ini
+DB/TikTokDownloadTool.db
