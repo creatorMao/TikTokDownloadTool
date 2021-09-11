@@ -87,11 +87,17 @@ ps:若遇到报错，请重新下载。基本上是服务器抽风
 
 
 ## 3. 快捷命令
-| 功能         | 命令样例                                              |
-|------------|-------------------------------------------------------|
-| 普通模式     | python TikTokMulti.py                                 |
-| 快速全量下载 | python TikTokMulti.py 1 https://v.douyin.com/JcjJ5Tq/ |
-| 快速增量下载 | python TikTokMulti.py 2                               |
+| 功能         | 命令样例                                              | 备注 |
+|------------|-------------------------------------------------------|------|
+| 普通模式     | python TikTokMulti.py                                 |      |
+| 快速全量下载 | python TikTokMulti.py 1 https://v.douyin.com/JcjJ5Tq/ |      |
+| 快速增量下载 | python TikTokMulti.py 2                               |  可搭配crontab定时下载 |
+
+## 4. 定时脚本样例
+~~~
+#每天白天11点，晚上11点自动下载一次
+50   11,23   *    *   *   python3 /opt/TikTokDownloadTool/TikTokMulti.py 2
+~~~
 
 # 说明
 
