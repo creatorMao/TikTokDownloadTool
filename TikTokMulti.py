@@ -5,6 +5,7 @@ import time
 import configparser
 import re
 import sys
+import datetime
 import DBService
 
 class TikTok():
@@ -110,6 +111,7 @@ class TikTok():
                 print("增量更新列表为空，请先选择功能1，进行一次全量更新以后，再选择增量更新！")
                 return
 
+            downloadStart=time.time()
             print('本次增量更新总共有'+str(updateLength)+"个用户")
             for idx in range(updateLength):
                 print("")
@@ -118,8 +120,11 @@ class TikTok():
                 self.judge_link(
                     (self.userHomePagePrefix+self.incrementalUpdateUserList[idx]), True)
             
-            print('')
+            print("")
             self.printDownloadCount()
+            downloadEnd=time.time()
+            self.downloadTimeCost=(datetime.datetime.fromtimestamp(downloadEnd)-datetime.datetime.fromtimestamp(downloadStart)).seconds
+            print('[总耗时]:'+str(self.downloadTimeCost)+"秒！")
         else:
             print("你在干什么，请输入正确的功能序号！")
             return

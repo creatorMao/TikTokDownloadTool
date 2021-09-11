@@ -119,6 +119,7 @@ ps:可用于dashboard数据源
 | ID  | ID  | VARCHAR(500) |  主键 |
 | DOWNLOAD_TYPE  | 下载类型  |VARCHAR(50) | 1:全量  2：增量 |  
 | DOWNLOAD_STATE | 下载状态  |VARCHAR(50) | 1:成功  0：失败 |  
+| DOWNLOAD_TIME_COST | 下载耗时  |INTEGER | 单位:秒 | 
 | MESSAGE | 下载日志  |TEXT |  |  
 | VIDEO_COUNT  | 当次视频下载数量  |INTEGER |  |  
 | PHOTO_COUNT  | 当次图片下载数量  |INTEGER |  |  
