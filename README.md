@@ -22,7 +22,6 @@ fork原项目的目的是为了增加个性化的功能(若你和我一样，喜
 ~~~
     python --version 
 ~~~
-![python环境](./Resource/python.jpg)
 
 - 请下载以下python库
 ~~~
@@ -95,8 +94,8 @@ ps:若遇到报错，请重新下载。基本上是服务器抽风
 
 ## 4. 定时脚本样例
 ~~~
-#每天白天11点，晚上11点自动下载一次
-50   11,23   *    *   *   python3 /opt/TikTokDownloadTool/TikTokMulti.py 2
+#每天,白天11点39分，下午4点39分，晚上1139分，三个时间自动增量下载一次，并将日志放在/tmp/ls.txt 下
+39  11,16,23  *  * * /usr/local/bin/python /opt/TikTokDownloadTool/TikTokMulti.py 2 >> /tmp/ls.txt
 ~~~
 
 # 说明
