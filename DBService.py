@@ -2,7 +2,6 @@ import os
 import uuid
 from Common import SQLiteHelper
 
-
 class DBService():
 
     def __init__(self):
@@ -49,3 +48,21 @@ class DBService():
     def addDownloadHistory(self, downloadType, downloadState, dwonloadTimeCost, message, videoCount, photoCount):
         self.db.execute("INSERT INTO T_DOWNLOAD_HISTORY(ID,DOWNLOAD_TYPE,DOWNLOAD_STATE,DOWNLOAD_TIME_COST,MESSAGE,VIDEO_COUNT,PHOTO_COUNT) VALUES(?,?,?,?,?,?,?)",
                         (str(uuid.uuid1()), downloadType, downloadState, dwonloadTimeCost, message, videoCount, photoCount))
+
+    #获取最新一条下载记录
+    def getlLatestDownloadHistory(self):
+        result=self.db.query("SELECT * FROM T_DOWNLOAD_HISTORY ORDER BY IMP_TIME DESC LIMIT 1")
+        list=[]
+        for row in result:
+	        list.append({
+                'ID':row[0],
+                'DOWNLOAD_TYPE':row[1],
+                'DOWNLOAD_STATE':row[2],
+                'DOWNLOAD_TIME_COST':row[3],
+                'MESSAGE':row[4],
+                'VIDEO_COUNT':row[5],
+                'PHOTO_COUNT':row[6],
+                'IMP_DATE':row[7],
+                'IMP_TIME':row[8],
+            })
+        return list

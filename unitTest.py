@@ -15,3 +15,6 @@ import DBService
 
 dbService=DBService.DBService()
 dbService.addDownloadHistory('2','1','2323','2323','12','5')
+result=dbService.getlLatestDownloadHistory()
+for row in result:
+	print(str(row))
