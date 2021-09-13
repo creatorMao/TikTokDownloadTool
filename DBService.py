@@ -52,10 +52,10 @@ class DBService():
     #获取最新一条下载记录
     def getlLatestDownloadHistory(self):
         result=self.db.query("SELECT * FROM T_DOWNLOAD_HISTORY ORDER BY IMP_TIME DESC LIMIT 1")
-        list=[]
+        res={}
         for row in result:
-	        list.append({
-                'ID':row[0],
+            res= {
+               'ID':row[0],
                 'DOWNLOAD_TYPE':row[1],
                 'DOWNLOAD_STATE':row[2],
                 'DOWNLOAD_TIME_COST':row[3],
@@ -64,5 +64,6 @@ class DBService():
                 'PHOTO_COUNT':row[6],
                 'IMP_DATE':row[7],
                 'IMP_TIME':row[8],
-            })
-        return list
+            }
+        return res
+        

@@ -4,8 +4,9 @@ import os,json
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from DBService import DBService
+from flask_cors import CORS
 app=Flask(__name__)
-
+CORS(app, resources=r'/*')
 @app.route('/')
 def index(name=None):
     config=getConfig()
@@ -33,10 +34,7 @@ def getConfig():
 def getlLatestDownloadHistory():
     result=DBService().getlLatestDownloadHistory()
 
-    return json.dumps({
-        'state':'ok',
-        'data':result
-    })
+    return json.dumps(result)
 
 if __name__=='__main__':
     app.run('0.0.0.0',8000,debug=False)

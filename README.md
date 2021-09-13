@@ -27,6 +27,7 @@ fork原项目的目的是为了增加个性化的功能(若你和我一样，喜
 ~~~
     pip install requests
     pip install retrying
+    pip install flask-cors
 ~~~
 
 # 功能
