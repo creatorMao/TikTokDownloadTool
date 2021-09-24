@@ -268,6 +268,16 @@ class TikTok():
         print(mode+"下载已完成!本次共下载"+str(self.videoCount)+"个视频,"+str(self.photoCount)+"张照片！")
         pass
 
+    def gethtml(self,url):
+        i = 0
+        while i < 3:
+            try:
+                return  requests.get(url, timeout=5,headers=self.headers)
+            except requests.exceptions.RequestException:
+                print(url)
+                print("[请求超时]:第"+str(i+1)+"次请求超时！即将进行第"+str(i+2)+"次尝试！")
+                i += 1
+
     def download(self,type,title,saveUrlList,orignUrl):
         typeName="文件";
         if type=="mp4":
@@ -285,7 +295,7 @@ class TikTok():
                 print("[下载结果]:视频已经下载过，已为你跳过~")
                 return True
 
-        video = requests.get(orignUrl)  # 保存视频
+        video = self.gethtml(orignUrl)# 保存视频
         start = time.time()  # 下载开始时间
         size = 0  # 初始化已下载大小
         chunk_size = 1024  # 每次下载的数据大小
