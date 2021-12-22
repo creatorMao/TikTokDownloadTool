@@ -90,7 +90,7 @@
     filterDoubleByteCharacter=function(text){
         if(text)
         {
-            return text.replace(new RegExp(/[^\x00-\xff]/g),"").replace(" ","").replace("TA","")
+            return text.match(new RegExp("[a-zA-z]+://[^\s]*"))[0];
         }
         return ""
     }
