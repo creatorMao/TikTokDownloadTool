@@ -241,7 +241,7 @@ class TikTok():
                 url=api_naxt_post_url, headers=self.headers)
             html = json.loads(response.content.decode())
 
-            if self.end == False:
+            if self.end == False and 'max_cursor' in html.keys():
                 #下一页值
                 max_cursor = html['max_cursor']
                 result = html['aweme_list']
