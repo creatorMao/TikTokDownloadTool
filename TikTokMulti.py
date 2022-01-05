@@ -382,7 +382,7 @@ class TikTok():
             
             alreadyExistFlag=True
             for i in range(len(images)):
-                imagesUrl = str(images[i]['url_list'][0])
+                imagesUrl = str(images[i]['url_list'][len(images[i]['url_list'])-1])
                 
                 name=re.sub(r'[\\/:*?"<>|\r\n]+', "_", author_name)
                 photoUrl = self.save + self.mode + '/' + nickname + '/' + name+ str(id)+str(i) + '.jpeg'
