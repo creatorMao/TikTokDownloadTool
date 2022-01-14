@@ -15,7 +15,7 @@ class TikTok():
             'user-agent': 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36 Edg/87.0.664.66'
         }
         
-        #self.dbService=DBService.DBService()
+        self.dbService=DBService.DBService()
 
         #绘制布局
         print("#" * 130)
@@ -117,15 +117,16 @@ class TikTok():
                 print("")
                 print("[下载队列]:正在更新第"+str(idx+1)+"个用户")
                 self.end = False
-                self.judge_link(
-                    (self.userHomePagePrefix+self.incrementalUpdateUserList[idx]), True)
+                if(self.judge_link(
+                    (self.userHomePagePrefix+self.incrementalUpdateUserList[idx]), True)==False):
+                    continue
             
             print("")
             self.printDownloadCount()
             downloadEnd=time.time()
             self.downloadTimeCost=(datetime.datetime.fromtimestamp(downloadEnd)-datetime.datetime.fromtimestamp(downloadStart)).seconds
             print('[总耗时]:'+str(self.downloadTimeCost)+"秒！")
-            #self.dbService.addDownloadHistory(self.userInput,'1',self.downloadTimeCost,'success',self.videoCount,self.photoCount)
+            self.dbService.addDownloadHistory(self.userInput,'1',self.downloadTimeCost,'success',self.videoCount,self.photoCount)
         else:
             print("你在干什么，请输入正确的功能序号！")
             return
@@ -139,18 +140,35 @@ class TikTok():
 
     #判断个人主页api链接
     def judge_link(self, userId, isUpdateFlag):
-        #获取解码后原地址
-        r = requests.get(url=self.Find(userId)[0])
-        multi_url = 'https://www.douyin.com/user/'
+        
+        index = 0
+        successFlag=False
+        key=''
 
-        #判断输入的是不是用户主页
-        if r.url[:28] == multi_url:
-            key = re.findall('/user/(.*?)\?', str(r.url))[0]
-            if not key:
-                key = r.url[28:83]
-            #print('----'+'用户的sec_id='+key+'----\r')
-        else:
-            return False
+        # 最大尝试四次
+        while index <= 4 and successFlag==False:
+            index+=1
+
+            if index>1:
+                print('正在尝试第'+str(index)+'次获取用户主页！')
+
+            #获取解码后原地址
+            r = requests.get(url=self.Find(userId)[0])
+            multi_url = 'https://www.douyin.com/user/'
+
+            #判断输入的是不是用户主页
+            if r.url[:28] == multi_url:
+                key = re.findall('/user/(.*?)\?', str(r.url))[0]
+                successFlag=True
+                if not key:
+                    key = r.url[28:83]
+                    successFlag=True
+                #print('----'+'用户的sec_id='+key+'----\r')
+            else:
+                pass
+
+        if successFlag==False:
+            return successFlag
 
         #第一次访问页码
         max_cursor = 0
