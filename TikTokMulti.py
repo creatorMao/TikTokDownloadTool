@@ -117,9 +117,12 @@ class TikTok():
                 print("")
                 print("[下载队列]:正在更新第"+str(idx+1)+"个用户")
                 self.end = False
-                if(self.judge_link(
-                    (self.userHomePagePrefix+self.incrementalUpdateUserList[idx]), True)==False):
-                    continue
+                try:
+                    self.judge_link((self.userHomePagePrefix+self.incrementalUpdateUserList[idx]), True)
+                except Exception as error:
+                    print('[错误原因]:'+error)
+                    pass
+                
             
             print("")
             self.printDownloadCount()
