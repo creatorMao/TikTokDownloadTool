@@ -179,11 +179,11 @@ class TikTok():
         #构造第一次访问链接
         api_post_url = 'https://www.iesdouyin.com/web/api/v2/aweme/%s/?sec_uid=%s&count=%s&max_cursor=%s&aid=1128&_signature=PDHVOQAAXMfFyj02QEpGaDwx1S&dytk=' % (
             self.mode, key, str(self.count), max_cursor)
-        self.get_data(api_post_url, max_cursor, userId, isUpdateFlag)
+        self.get_data(api_post_url, max_cursor, userId, isUpdateFlag,key)
         return api_post_url, max_cursor, key
 
     #获取第一次api数据
-    def get_data(self, api_post_url, max_cursor, userId, isUpdateFlag):
+    def get_data(self, api_post_url, max_cursor, userId, isUpdateFlag,key):
         #尝试次数
         index = 0
         #存储api数据
@@ -216,24 +216,17 @@ class TikTok():
                     result = html['aweme_list']
 
                     #处理第一页视频信息
-                    self.video_info(result, max_cursor, userId, isUpdateFlag)
+                    self.video_info(result, max_cursor, userId, isUpdateFlag,key)
                 else:
-                    self.next_data(max_cursor, userId, isUpdateFlag)
+                    self.next_data(max_cursor, userId, isUpdateFlag,key)
             else:
                 print('[抓取日志]:第1页，无数据。')
-                self.next_data(max_cursor, userId, isUpdateFlag)
+                self.next_data(max_cursor, userId, isUpdateFlag,key)
 
         return result, max_cursor
 
     #下一页
-    def next_data(self, max_cursor, userId, isUpdateFlag):
-        #获取解码后原地址
-        r = requests.get(url=self.Find(userId)[0])
-
-        #获取用户sec_uid
-        key = re.findall('/user/(.*?)\?', str(r.url))[0]
-        if not key:
-            key = r.url[28:83]
+    def next_data(self, max_cursor, userId, isUpdateFlag,key):
 
         #构造下一次访问链接
         api_naxt_post_url = 'https://www.iesdouyin.com/web/api/v2/aweme/%s/?sec_uid=%s&count=%s&max_cursor=%s&aid=1128&_signature=RuMN1wAAJu7w0.6HdIeO2EbjDc&dytk=' % (
@@ -272,7 +265,7 @@ class TikTok():
                     print('[抓取日志]:', max_cursor, '页无数据。')
 
                 #处理下一页视频信息
-                self.video_info(result, max_cursor, userId, isUpdateFlag)
+                self.video_info(result, max_cursor, userId, isUpdateFlag,key)
             else:
                 self.end == True
                 print('[抓取日志]:', max_cursor, '页抓获数据失败')
@@ -340,7 +333,7 @@ class TikTok():
             return False
 
     #处理视频信息
-    def video_info(self, result, max_cursor, userId, isUpdateFlag):
+    def video_info(self, result, max_cursor, userId, isUpdateFlag,key):
         #作者信息
         author_list = []
 
@@ -376,7 +369,7 @@ class TikTok():
                 pass
 
         self.videos_download(author_list, video_list, aweme_id,
-                             nickname, max_cursor, userId, isUpdateFlag)
+                             nickname, max_cursor, userId, isUpdateFlag,key)
 
         return self, author_list, video_list, aweme_id, nickname, max_cursor
     
@@ -420,7 +413,7 @@ class TikTok():
             print("图片下载错误："+error)
             return False
             
-    def videos_download(self, author_list, video_list, aweme_id, nickname, max_cursor, userId, isUpdateFlag):
+    def videos_download(self, author_list, video_list, aweme_id, nickname, max_cursor, userId, isUpdateFlag,key):
         for i in range(len(video_list)):
             try:
                 #创建并检测下载目录是否存在
@@ -447,7 +440,7 @@ class TikTok():
 
             except Exception as error:
                 print(error)
-        self.next_data(max_cursor, userId, isUpdateFlag)
+        self.next_data(max_cursor, userId, isUpdateFlag,key)
 
 #主模块执行
 if __name__ == "__main__":
