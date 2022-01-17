@@ -7,6 +7,7 @@ import re
 import sys
 import datetime
 import DBService
+from urllib import parse
 
 class TikTok():
     #初始化
@@ -156,19 +157,12 @@ class TikTok():
                 print('正在尝试第'+str(index)+'次获取用户主页！')
 
             #获取解码后原地址
-            r = requests.get(url=self.Find(userId)[0])
-            multi_url = 'https://www.douyin.com/user/'
+            r=self.requestDeal(self.Find(userId)[0])
+            params = parse.parse_qs(parse.urlparse(r.url).query)
+            key= params['sec_uid'][0]
 
-            #判断输入的是不是用户主页
-            if r.url[:28] == multi_url:
-                key = re.findall('/user/(.*?)\?', str(r.url))[0]
+            if key:
                 successFlag=True
-                if not key:
-                    key = r.url[28:83]
-                    successFlag=True
-                #print('----'+'用户的sec_id='+key+'----\r')
-            else:
-                pass
 
         if successFlag==False:
             return successFlag
@@ -197,8 +191,7 @@ class TikTok():
 
             print('')
             print('[抓取日志]:正在对第1页，进行第 %d 次抓取\r' % index)
-            time.sleep(0.3)
-            response = requests.get(url=api_post_url, headers=self.headers)
+            response=self.requestDeal(api_post_url)
             html = json.loads(response.content.decode())
 
             if 'max_cursor' in html.keys():
@@ -250,9 +243,8 @@ class TikTok():
             
             print('')
             print('[抓取日志]:正在对', max_cursor, '页,进行第',index,'次抓取')
-            time.sleep(0.3)
-            response = requests.get(
-                url=api_naxt_post_url, headers=self.headers)
+            
+            response=self.requestDeal(api_naxt_post_url)
             html = json.loads(response.content.decode())
 
             if self.end == False and 'max_cursor' in html.keys():
@@ -282,10 +274,11 @@ class TikTok():
         print(mode+"下载已完成!本次共下载"+str(self.videoCount)+"个视频,"+str(self.photoCount)+"张照片！")
         pass
 
-    def gethtml(self,url):
+    def requestDeal(self,url):
         i = 0
         while i < 3:
             try:
+                time.sleep(0.5)
                 return  requests.get(url, timeout=5,headers=self.headers)
             except requests.exceptions.RequestException:
                 print(url)
@@ -309,7 +302,7 @@ class TikTok():
                 print("[下载结果]:视频已经下载过，已为你跳过~")
                 return True
 
-        video = self.gethtml(orignUrl)# 保存视频
+        video = self.requestDeal(orignUrl)# 保存视频
         start = time.time()  # 下载开始时间
         size = 0  # 初始化已下载大小
         chunk_size = 1024  # 每次下载的数据大小
@@ -390,8 +383,7 @@ class TikTok():
         try:
             # 官方接口
             jx_url = f'https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/?item_ids={str(id)}'
-            js = json.loads(requests.get(
-                url=jx_url, headers=self.headers).text)
+            js = json.loads(self.requestDeal(jx_url).text)
             images = js['item_list'][0]['images']
             
             alreadyExistFlag=True
