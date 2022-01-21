@@ -21,6 +21,19 @@ def saveConfig():
         blog_file.write(json.dumps(config))
     return "ok"
 
+@app.route('/addDownloadHistory',methods=['GET'])
+def addDownloadHistory():
+    downloadType=request.args.get("downloadType")
+    downloadState=request.args.get("downloadState")
+    downloadTimeCost=request.args.get("downloadTimeCost")
+    message=request.args.get("message")
+    videoCount=request.args.get("videoCount")
+    photoCount=request.args.get("photoCount")
+
+    DBService().addDownloadHistory(downloadType,downloadState,downloadTimeCost,message,videoCount,photoCount)
+    return "ok"
+
+
 def getConfigFileUrl():
     return os.path.join(app.static_folder,  os.path.abspath(os.path.dirname(__file__))+'/config.json')
 
