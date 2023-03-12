@@ -1,3 +1,6 @@
+该项目已停止维护，请使用新项目[tiktok-download](https://github.com/creatorMao/tiktok-download)
+
+----------------------------
 
 ![python](https://img.shields.io/badge/python-blue) ![Flask](https://img.shields.io/badge/Flask-green) ![SQLite](https://img.shields.io/badge/SQLite-yellow)
 
